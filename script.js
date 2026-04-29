@@ -107,3 +107,27 @@ document.querySelectorAll(".param-tab").forEach((tab) => {
     applyTheme(root.getAttribute("data-theme") === "light" ? "dark" : "light");
   });
 })();
+
+/** 窄屏与顶栏「菜单」同布局时强制收起主题按钮（避免 z-index 盖住菜单） */
+(function () {
+  const btn = document.getElementById("theme-toggle");
+  if (!btn) return;
+  const mq = window.matchMedia("(max-width: 1180px)");
+  function syncCompactNavChrome() {
+    if (mq.matches) {
+      btn.style.setProperty("display", "none", "important");
+      btn.style.setProperty("visibility", "hidden", "important");
+      btn.style.setProperty("pointer-events", "none", "important");
+      btn.setAttribute("aria-hidden", "true");
+      btn.setAttribute("tabindex", "-1");
+    } else {
+      btn.style.removeProperty("display");
+      btn.style.removeProperty("visibility");
+      btn.style.removeProperty("pointer-events");
+      btn.removeAttribute("aria-hidden");
+      btn.removeAttribute("tabindex");
+    }
+  }
+  mq.addEventListener("change", syncCompactNavChrome);
+  syncCompactNavChrome();
+})();
