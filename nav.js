@@ -119,7 +119,37 @@ document.addEventListener('DOMContentLoaded', () => {
   window.AITheme?.syncToggleButton?.(window.AITheme.get());
   window.AITheme?.patchAllLinks?.();
 
-  document.getElementById('nav-toggle')?.addEventListener('click', () => {
-    document.getElementById('nav-groups')?.classList.toggle('open');
-  });
+  const navToggle = document.getElementById('nav-toggle');
+  const navGroups = document.getElementById('nav-groups');
+  if (navToggle && navGroups) {
+    const syncNavOpen = () => {
+      const open = navGroups.classList.contains('open');
+      document.body.classList.toggle('nav-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+    };
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navGroups.classList.toggle('open');
+      syncNavOpen();
+    });
+    navGroups.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        navGroups.classList.remove('open');
+        syncNavOpen();
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!navGroups.classList.contains('open')) return;
+      if (e.target.closest('#nav-groups') || e.target.closest('#nav-toggle')) return;
+      navGroups.classList.remove('open');
+      syncNavOpen();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1100 && navGroups.classList.contains('open')) {
+        navGroups.classList.remove('open');
+        syncNavOpen();
+      }
+    });
+  }
 });

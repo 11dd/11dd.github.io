@@ -1184,6 +1184,12 @@ td strong {
 }
 
 /* ——— INDUSTRY ——— */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 24px;
+}
+
 .ind-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -2454,5 +2460,428 @@ a.model-link:hover {
   .nav-portal-cta {
     font-size: 12px;
     padding: 7px 10px;
+  }
+}
+
+/* ——— MOBILE OPTIMIZATION (全站) ——— */
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+.page-wrap--home {
+  padding-top: 32px;
+}
+
+.tbl-wrap {
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.tbl-wrap::after {
+  content: '← 左右滑动查看更多 →';
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  padding: 8px 4px 2px;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 769px) {
+  .tbl-wrap::after {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .topnav {
+    padding: env(safe-area-inset-top, 0) 12px 0;
+    padding-left: max(12px, env(safe-area-inset-left, 0));
+    padding-right: max(12px, env(safe-area-inset-right, 0));
+  }
+
+  .topnav .logo {
+    font-size: 14px;
+    max-width: 42vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nav-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-icon-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px 10px;
+  }
+
+  .nav-groups {
+    max-height: calc(100vh - 54px);
+    max-height: calc(100dvh - 54px);
+  }
+
+  .nav-groups a {
+    display: block;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .search-panel {
+    width: calc(100% - 20px);
+    max-height: calc(100vh - 74px);
+    max-height: calc(100dvh - 74px);
+    overflow-y: auto;
+  }
+
+  .hero {
+    padding: 36px 16px 28px;
+  }
+
+  .hero.hero-home {
+    min-height: auto;
+    padding-top: 48px;
+    padding-bottom: 28px;
+  }
+
+  .hero p,
+  .hero-lead {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .badges {
+    gap: 6px;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .page-wrap {
+    padding: 28px 16px calc(56px + env(safe-area-inset-bottom, 0));
+  }
+
+  .page-wrap--home {
+    padding-top: 24px;
+  }
+
+  .sec-sub {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .sec-head {
+    flex-direction: column;
+    gap: 8px;
+    margin: 28px 0 14px;
+  }
+
+  .grid-2,
+  .card-grid,
+  .paths-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
+  }
+
+  .industry-grid {
+    gap: 16px;
+    grid-template-columns: 1fr;
+  }
+
+  .ind-header {
+    padding: 14px 16px;
+  }
+
+  .ind-body {
+    padding: 14px 16px;
+  }
+
+  .stat-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .stat {
+    padding: 12px 10px;
+  }
+
+  .stat-num {
+    font-size: 22px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .dbox {
+    padding: 14px 16px;
+  }
+
+  .dbox h3 {
+    font-size: 16px;
+  }
+
+  .card {
+    padding: 14px 16px;
+  }
+
+  .card-name {
+    font-size: 14px;
+  }
+
+  table {
+    min-width: 520px;
+  }
+
+  table.module-map {
+    min-width: 0;
+  }
+
+  .module-map th,
+  .module-map td {
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: normal;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  th {
+    white-space: normal;
+  }
+
+  .cmp-h {
+    display: none;
+  }
+
+  .cmp-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .cmp-row > div {
+    border-radius: 0;
+    padding: 10px 14px;
+  }
+
+  .cmp-row .cmp-label {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+
+  .code,
+  .copy-block pre,
+  .copy-block .copy-block-body {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .tl {
+    padding-left: 22px;
+  }
+
+  .tl-dot {
+    left: -18px;
+  }
+
+  .tl-card {
+    padding: 12px 14px;
+  }
+
+  .layer-stack {
+    gap: 8px;
+  }
+
+  .layer {
+    padding: 12px 14px;
+  }
+
+  .cost-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-lead {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+
+  .data-disclaimer {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+
+  hr.divider {
+    margin: 32px 0;
+  }
+
+  footer {
+    padding: 24px 16px;
+    font-size: 12px;
+  }
+
+  .chapter-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.6;
+  }
+
+  .chapter-nav a {
+    display: inline-block;
+    padding: 4px 0;
+  }
+
+  #back-to-top {
+    bottom: calc(20px + env(safe-area-inset-bottom, 0));
+    right: calc(16px + env(safe-area-inset-right, 0));
+    width: 48px;
+    height: 48px;
+  }
+
+  .page-hub-layout {
+    padding: 0 12px 32px;
+  }
+
+  .page-hub-layout--horizontal .hub-zone-tabs {
+    top: 54px;
+    margin: 0 -4px;
+    padding-bottom: 10px;
+    gap: 6px;
+  }
+
+  .hub-zone-tab {
+    font-size: 12px;
+    padding: 10px 14px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .hub-link {
+    padding: 14px 16px;
+    min-height: 48px;
+  }
+
+  .hub-quick {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .hub-quick-btn {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .hub-pill {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .hub-link-grid,
+  .hub-link-grid--compact {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .hub-zone-title {
+    font-size: 18px;
+  }
+
+  .hero-portal-home {
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+
+  .portal-home-title {
+    font-size: clamp(20px, 6vw, 28px);
+    padding: 0 8px;
+  }
+
+  .topnav.topnav--portal .logo--portal {
+    font-size: 13px;
+    max-width: 55vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-row--market .stat-num {
+    font-size: 18px;
+  }
+
+  .scores {
+    gap: 5px;
+  }
+
+  .sc {
+    font-size: 10.5px;
+    padding: 2px 7px;
+  }
+
+  .sticky-toc a {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .nav-portal-cta {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .hero-home h1 {
+    font-size: clamp(22px, 7vw, 32px);
+  }
+}
+
+@media (max-width: 380px) {
+  .topnav .logo {
+    max-width: 36vw;
+  }
+
+  .stat-row {
+    grid-template-columns: 1fr;
   }
 }
