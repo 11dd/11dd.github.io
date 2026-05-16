@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>API集成·网关 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>🔌 API 集成 · 网关与中转站</h1>
+  <p>从直连 API 到 One-API / LiteLLM 聚合——开发接入与网关搭建</p>
+  <div class="badges"><span class="badge">REST</span><span class="badge">Streaming</span><span class="badge">Tools</span></div>
+</div>
+<div class="page-wrap">
+  <div class="page-lead"><strong>本章定位：</strong>开发者接入大模型 API 的通用写法与生产清单；后半部分 <a href="#gateway">API 网关与中转站</a> 适合需要统一计费、多模型路由的团队。</div>
+  <div class="data-disclaimer"><strong>说明：</strong>以下示例采用行业通用的 OpenAI Chat Completions 格式；DeepSeek、通义、豆包等均提供兼容端点，具体 URL 与模型名见各平台文档。</div>
+
+  <div class="sec-title">📡 核心概念</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-name">Chat Completions</div><div class="card-desc">messages 数组：system / user / assistant 角色对话。</div></div>
+    <div class="card"><div class="card-name">Embedding</div><div class="card-desc">文本转向量，供 RAG 检索使用。</div></div>
+    <div class="card"><div class="card-name">stream: true</div><div class="card-desc">SSE 流式返回，边生成边展示。</div></div>
+    <div class="card"><div class="card-name">tools / functions</div><div class="card-desc">模型返回要调用的工具名与参数 JSON。</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">💻 最小调用示例（Python）</div>
+  <div class="dbox">
+    <div class="code">from openai import OpenAI<br>client = OpenAI(api_key="YOUR_KEY", base_url="https://api.openai.com/v1")<br><br>resp = client.chat.completions.create(<br>&nbsp;&nbsp;model="gpt-4o",<br>&nbsp;&nbsp;messages=[{"role":"user","content":"你好"}],<br>&nbsp;&nbsp;stream=True<br>)<br>for chunk in resp:<br>&nbsp;&nbsp;if chunk.choices[0].delta.content:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(chunk.choices[0].delta.content, end="")</div>
+    <div class="note">国内模型示例：将 base_url 换为厂商提供的兼容地址，model 换为如 deepseek-chat、qwen-plus 等。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🛡️ 工程实践清单</div>
+  <div class="dbox"><ul>
+    <li><strong>密钥：</strong>仅放服务端环境变量，禁止写进前端</li>
+    <li><strong>重试：</strong>429/5xx 指数退避；设置 timeout</li>
+    <li><strong>限流：</strong>按用户/租户 QPS 限制</li>
+    <li><strong>日志：</strong>记录 request_id、token 用量，对接 <a href="benchmarks.html#eval-ops">观测</a></li>
+    <li><strong>网关：</strong>多模型路由见下方 <a href="#gateway">网关章节</a></li>
+  </ul></div>
+
+  <hr class="divider">
+  <div class="sec-title" id="gateway">🌐 API 网关与中转站</div>
+  <div class="dbox"><h3>🎯 为什么需要中转站？</h3>
+    <p>LLM API Gateway 介于用户与模型 API 之间，解决网络访问、统一计费、多模型路由等问题。</p>
+    <div class="grid-3" style="margin-top:12px">
+      <div class="ci"><div class="ci-name">🌐 网络</div><div class="ci-note">国内直连海外 API 不稳定，需加速节点</div></div>
+      <div class="ci"><div class="ci-name">💳 支付</div><div class="ci-note">集中结算，降低团队各自开 Key 的成本</div></div>
+      <div class="ci"><div class="ci-name">💰 管控</div><div class="ci-note">限流、配额、审计、多模型统一 OpenAI 格式</div></div>
+    </div>
+  </div>
+
+  <div class="sec-sub">主流开源框架对比（Star 数为约数，以 GitHub 为准）</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>框架</th><th>Stars</th><th>特点</th><th>适合</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://github.com/songquanpeng/one-api" target="_blank"><strong>One-API</strong></a></td><td>33K+</td><td>部署极简、生态成熟</td><td>个人/小团队</td></tr>
+        <tr><td><a href="https://github.com/Calcium-Ion/new-api" target="_blank"><strong>New-API</strong></a></td><td>33K+</td><td>One-API 增强、多模态</td><td>需 MJ/音频等</td></tr>
+        <tr><td><a href="https://github.com/BerriAI/litellm" target="_blank"><strong>LiteLLM</strong></a></td><td>40K+</td><td>100+ 供应商、企业观测</td><td>中大型企业</td></tr>
+        <tr><td><a href="https://github.com/VoAPI/VoAPI" target="_blank"><strong>VoAPI</strong></a></td><td>1.5K+</td><td>商业运营、五级用户</td><td>多租户售卖</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dbox"><h3>🎯 选型速查</h3>
+    <div class="cmp-row"><div class="cmp-label">个人/小团队</div><div>One-API 或 New-API</div></div>
+    <div class="cmp-row"><div class="cmp-label">企业生产</div><div>LiteLLM + 观测栈</div></div>
+    <div class="cmp-row"><div class="cmp-label">商业转售</div><div>VoAPI / Sub2API（注意合规）</div></div>
+  </div>
+
+  <div class="sec-title">📋 快速部署（One-API）</div>
+  <div class="steps">
+    <div class="step"><div class="step-body"><strong>Docker 启动</strong><span class="code" style="display:block;margin-top:6px">docker run -d --name one-api -p 3000:3000 -v /data/one-api:/data justsong/one-api</span></div></div>
+    <div class="step"><div class="step-body"><strong>配置渠道</strong>后台添加 DeepSeek/OpenAI 等上游 Key，生成用户 Token。</div></div>
+    <div class="step"><div class="step-body"><strong>生产建议</strong>绑定域名 HTTPS、MySQL 持久化、对接 <a href="benchmarks.html#eval-ops">观测</a>。</div></div>
+  </div>
+  <div class="warn">⚠️ C 端转售需关注《生成式人工智能服务管理暂行办法》及平台服务条款；内训以技术架构为主。</div>
+</div>
+<footer><p>AI大模型全景培训手册 · API集成 · 2026年5月版</p></footer>
+</body>
+</html>

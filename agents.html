@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent框架 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>🤖 AI Agent框架全景</h1>
+  <p>从零代码拖拽到专业开发——10大框架深度对比，找到最适合你的Agent构建方案</p>
+  <div class="badges"><span class="badge">10大框架</span><span class="badge">零代码到开发</span><span class="badge">OpenClaw小龙虾</span><span class="badge">Hermes Agent</span><span class="badge">Dify</span><span class="badge">CrewAI</span></div>
+</div>
+<div class="page-wrap">
+  <div class="page-lead"><strong>本章定位：</strong>对比 10 大 Agent 框架与选型建议。与 <a href="mcp.html">MCP</a>（工具协议）、<a href="rag.html">RAG</a>（知识检索）配合阅读；工程接入见 <a href="api-integration.html">API·网关</a>。</div>
+  <div class="dbox"><h3>🎯 什么是AI Agent？</h3>
+    <p>AI Agent不是普通的聊天机器人——它是能自主决策、调用工具、执行多步任务的智能体。区别：</p>
+    <div class="grid-2" style="margin-top:12px">
+      <div class="ci"><div class="ci-name">🤖 普通Chat</div><div class="ci-note">问一句答一句，无法自己"做事"。你必须把每一步都告诉他，他不能自己思考下一步该做什么。</div></div>
+      <div class="ci"><div class="ci-name">🦾 AI Agent</div><div class="ci-note">给定一个目标：「帮我对比三家云服务商的价格」，Agent自动搜索→抓数据→分析对比→输出表格→发邮件给老板。全程自主完成。</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">📊 10大Agent框架对比</div>
+
+  <div class="dbox">
+    <h4>① <a href="https://github.com/langgenius/dify" target="_blank" style="color:var(--text);text-decoration:none">Dify</a> · ✨ 最推荐（零代码上手+可视化）</h4>
+    <p>开源、可视化、企业级。非技术人员30分钟搭建一个Agent应用。</p>
+    <ul>
+      <li><strong>核心：</strong>拖拽式工作流设计器 + 知识库 + 工具调用 + 聊天/工作流双模式</li>
+      <li><strong>特点：</strong>内置RAG知识库、变量管理、条件判断、代码节点、API访问</li>
+      <li><strong>适合：</strong>非技术人快速构建、技术团队快速POC、企业AI应用</li>
+      <li><strong>GitHub：</strong><a href="https://github.com/langgenius/dify" target="_blank">github.com/langgenius/dify</a> · 官网：<a href="https://dify.ai" target="_blank">dify.ai</a></li>
+    </ul>
+  </div>
+  <div class="dbox">
+    <h4>② <a href="https://github.com/langchain-ai/langchain" target="_blank" style="color:var(--text);text-decoration:none">LangChain</a> · 开发者首选（Python模块化）</h4>
+    <p>最成熟的AI应用开发框架，生态最完善。GitHub 100k+ Star。</p>
+    <ul>
+      <li><strong>核心：</strong>Chain → Agent → Tool → Memory 四要素，自由组合构建AI工作流</li>
+      <li><strong>特点：</strong>600+集成，LangSmith监控调试，LangServe部署</li>
+      <li><strong>适合：</strong>Python开发者，需要深度定制的复杂AI应用</li>
+      <li><strong>GitHub：</strong><a href="https://github.com/langchain-ai/langchain" target="_blank">github.com/langchain-ai/langchain</a> · 官网：<a href="https://langchain.com" target="_blank">langchain.com</a></li>
+    </ul>
+  </div>
+  <div class="dbox">
+    <h4>③ <a href="https://github.com/crewAIInc/crewAI" target="_blank" style="color:var(--text);text-decoration:none">CrewAI</a> · 多Agent协作最强</h4>
+    <p>专为"多Agent团队协作"设计。每个Agent扮演不同角色，像你的AI员工团队。</p>
+    <ul>
+      <li><strong>核心：</strong>定义多个Role Agent（研究员/写作者/审查员等）+ Task（任务）+ Process（串行/并行/分级）</li>
+      <li><strong>特点：</strong>角色协作、任务委派、LLM间相互验证</li>
+      <li><strong>GitHub：</strong><a href="https://github.com/crewAIInc/crewAI" target="_blank">github.com/crewAIInc/crewAI</a> · 官网：<a href="https://crewai.com" target="_blank">crewai.com</a></li>
+    </ul>
+  </div>
+  <div class="dbox">
+    <h4>④ <a href="https://github.com/microsoft/autogen" target="_blank" style="color:var(--text);text-decoration:none">AutoGen</a> (Microsoft) · 多Agent对话</h4>
+    <p>微软出品，多个Agent通过对话协作完成任务。</p>
+    <ul>
+      <li><strong>核心：</strong>多Agent对话循环（UserProxy + Assistant + GroupChat）</li>
+      <li><strong>GitHub：</strong><a href="https://github.com/microsoft/autogen" target="_blank">github.com/microsoft/autogen</a></li>
+    </ul>
+  </div>
+  <div class="dbox">
+    <h4>⑤ <a href="https://github.com/n8n-io/n8n" target="_blank" style="color:var(--text);text-decoration:none">n8n</a> · 自动化工作流</h4>
+    <p>开源自动化工具，400+应用集成。</p>
+    <ul>
+      <li><strong>GitHub：</strong><a href="https://github.com/n8n-io/n8n" target="_blank">github.com/n8n-io/n8n</a> · 官网：<a href="https://n8n.io" target="_blank">n8n.io</a></li>
+    </ul>
+  </div>
+  <div class="dbox">
+    <h4>⑥ <a href="https://www.coze.com" target="_blank" style="color:var(--text);text-decoration:none">Coze</a>（字节跳动）· 零代码Bot工厂</h4>
+    <p>字节出品的零代码Bot搭建平台。</p>
+    <ul>
+      <li><strong>官网：</strong><a href="https://www.coze.com" target="_blank">coze.com</a></li>
+    </ul>
+  </div>
+  <div class="dbox">
+    <h4>⑦ <a href="https://github.com/run-llama/llama_index" target="_blank" style="color:var(--text);text-decoration:none">LlamaIndex</a> · 数据+RAG最强</h4>
+    <p>数据检索型Agent框架。</p>
+    <ul>
+      <li><strong>GitHub：</strong><a href="https://github.com/run-llama/llama_index" target="_blank">github.com/run-llama/llama_index</a> · 官网：<a href="https://llamaindex.ai" target="_blank">llamaindex.ai</a></li>
+    </ul>
+  </div>
+  <div class="dbox">
+    <h4>⑧ <a href="https://github.com/microsoft/semantic-kernel" target="_blank" style="color:var(--text);text-decoration:none">Semantic Kernel</a> (Microsoft) · .NET + 企业级</h4>
+    <p>微软企业级AI编排框架。</p>
+    <ul>
+      <li><strong>GitHub：</strong><a href="https://github.com/microsoft/semantic-kernel" target="_blank">github.com/microsoft/semantic-kernel</a></li>
+    </ul>
+  </div>
+  <div class="dbox" style="border-color:var(--green)">
+    <h4>⑨ 🦞 <a href="https://github.com/BestDingSheng/open-claw" target="_blank" style="color:var(--text);text-decoration:none">OpenClaw（小龙虾）</a> · 🔥 2026年最火开源Agent</h4>
+    <p>让AI直接操控电脑——看屏幕、点鼠标、敲键盘、处理文件、发邮件。</p>
+    <ul>
+      <li><strong>GitHub：</strong><a href="https://github.com/BestDingSheng/open-claw" target="_blank">github.com/BestDingSheng/open-claw</a></li>
+    </ul>
+  </div>
+  <div class="dbox" style="border-color:var(--accent2)">
+    <h4>⑩ <a href="https://github.com/NousResearch/Hermes-Agent" target="_blank" style="color:var(--text);text-decoration:none">Hermes Agent</a> (Nous Research) · 自我进化的开源Agent</h4>
+    <p>自我改进型AI Agent框架，GitHub 17K Stars。</p>
+    <ul>
+      <li><strong>GitHub：</strong><a href="https://github.com/NousResearch/Hermes-Agent" target="_blank">github.com/NousResearch/Hermes-Agent</a> · ⭐ 17K Stars</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox">
+    <h3>📊 框架选型决策树</h3>
+    <div class="cmp-row"><div class="cmp-label">不会写代码</div><div>Dify 或 Coze → 优先Dify（开源可私有化）</div></div>
+    <div class="cmp-row"><div class="cmp-label">电脑操控/自动化</div><div><strong style="color:var(--green)">🦞 OpenClaw(小龙虾)</strong> → 自部署24小时电脑Agent</div></div>
+    <div class="cmp-row"><div class="cmp-label">自我进化Agent</div><div><strong style="color:var(--accent2)">Hermes Agent</strong> → 越用越聪明的自学习Agent</div></div>
+    <div class="cmp-row"><div class="cmp-label">会Python</div><div>LangChain（全栈）或 CrewAI（多Agent）或 LlamaIndex（数据检索）</div></div>
+    <div class="cmp-row"><div class="cmp-label">做业务自动化</div><div>n8n（400+集成）或 Dify（AI原生）</div></div>
+    <div class="cmp-row"><div class="cmp-label">多Agent协作</div><div>CrewAI（最简单）或 AutoGen（最灵活）</div></div>
+    <div class="cmp-row"><div class="cmp-label">.NET企业</div><div>Semantic Kernel</div></div>
+    <div class="cmp-row"><div class="cmp-label">快速POC验证</div><div>Dify（1天搭建）→ Coze（1小时搭建）</div></div>
+    <div class="cmp-row"><div class="cmp-label">生产级部署</div><div>LangChain + LangSmith + 自部署Dify</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🎯 Agent实战案例</div>
+  <div class="grid-2">
+    <div class="dbox"><h4>🛒 电商运营Agent</h4>
+      <ul><li>每天自动爬取竞品价格变化</li><li>AI分析后生成调价建议</li><li>自动更新电商平台价格</li><li>技术栈：CrewAI + 浏览器自动化 + OpenAI API</li></ul>
+    </div>
+    <div class="dbox"><h4>📊 数据分析Agent</h4>
+      <ul><li>用户输入"分析上季度销售数据"</li><li>Agent自动查询数据库→生成图表→输出分析报告</li><li>技术栈：LangChain + Pandas Agent + Matplotlib</li></ul>
+    </div>
+    <div class="dbox"><h4>📝 内容创作Agent团队</h4>
+      <ul><li>选题Agent选当日热点话题→写稿Agent出初稿→审校Agent检查→配图Agent生成配图→排版Agent发布</li><li>技术栈：CrewAI + Dify + Midjourney API</li></ul>
+    </div>
+    <div class="dbox"><h4>🔧 客服工单自动处理Agent</h4>
+      <ul><li>接收工单→分析类型→知识库检索答案→生成回复→超时转人工</li><li>技术栈：Dify + RAG + 企业微信API</li></ul>
+    </div>
+    <div class="dbox"><h4>🦞 小龙虾办公自动化Agent</h4>
+      <ul><li>每天定时打开Excel→读取数据→生成周报PPT→发送邮件给团队→微信通知老板</li><li>技术栈：OpenClaw + Ollama本地模型 + 企业微信</li></ul>
+    </div>
+    <div class="dbox"><h4>🧠 Hermes AI助手</h4>
+      <ul><li>搭建在Discord/Slack/Telegram的团队AI助理，自动学习团队常用操作并创建技能</li><li>支持代码审查、Git操作、数据库查询、会议纪要整理</li><li>技术栈：Hermes Agent + Hermes 3 405B + 团队API集成</li></ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox"><h3>📌 Agent开发的核心模式（四要素）</h3>
+    <ol>
+      <li><strong>🧠 大脑（LLM）：</strong>GPT-4o/Claude/Qwen3 等基础模型，负责推理和规划</li>
+      <li><strong>🛠️ 工具（Tools）：</strong>让LLM"操作外部"的能力——搜索、计算器、数据库、API调用、代码执行、浏览器操作</li>
+      <li><strong>💾 记忆（Memory）：</strong>对话历史/向量数据库/持久化存储。短期记忆(上下文窗口) + 长期记忆(向量库)</li>
+      <li><strong>🎯 规划（Planning）：</strong>将大目标拆解为子任务——CoT(简单) → ReAct(中级) → Plan-and-Execute(高级)</li>
+    </ol>
+  </div>
+</div>
+<footer><p>AI大模型全景培训手册 · Agent框架 · 2026年5月版</p><p>数据来源：GitHub · 各框架官方文档 · 开发者社区评测 · 2026年5月更新</p><p><a href="manual.html">← 返回培训首页</a> | <a href="industries.html">← 行业应用</a> | <a href="api-integration.html#gateway">下一章：中转站 →</a></p></footer>
+</body>
+</html>

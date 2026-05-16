@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>评测·生产·合规·职业 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>🏅 评测 · 生产 · 合规 · 职业</h1>
+  <p>实验室基准、上线观测、法规安全、认证与职业路线——进阶篇合一</p>
+  <div class="badges"><span class="badge">Benchmark</span><span class="badge">Langfuse</span><span class="badge">备案合规</span><span class="badge">职业认证</span></div>
+</div>
+<div class="page-wrap page-cols">
+  <div class="sticky-toc">
+    <h5>本章目录</h5>
+    <a href="#benchmarks">评测基准</a>
+    <a href="#eval-ops">生产观测</a>
+    <a href="#safety">安全合规</a>
+    <a href="#careers">学习职业</a>
+  </div>
+  <div class="page-main">
+  <div class="data-disclaimer"><strong>说明：</strong>分数会随新模型变化，请以 <a href="https://www.swebench.com" target="_blank">SWE-bench</a>、<a href="https://chat.lmsys.org" target="_blank">LMSYS</a> 实时页面为准。</div>
+  <div class="sec-title" id="benchmarks">🏅 评测基准（Benchmark）</div>
+  <div class="dbox"><h3>🎯 为什么需要看懂评测基准？</h3>
+    <p>每个模型厂商都会说自己是"最强"。但<a href="https://lmmarketcap.com/zh/benchmarks" target="_blank">独立基准评测</a>就像"照妖镜"——告诉你模型在特定场景的真实水平。不了解基准，你看到的只是营销话术。</p>
+    <div class="note">⚠️ <strong>重要提醒：</strong>2025年后MMLU等老牌基准已"饱和"（顶级模型普遍>88%），已经无法区分模型差距。看评测要关注新基准（SWE-bench、AIME、HLE）和实际使用体验。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">📊 15大评测基准详解</div>
+  <div class="sec-sub">按测试能力分类——每个基准测试什么、满分多少、当前第一</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>基准名称</th><th>测试内容</th><th>难度评级</th><th>题型</th><th>当前最高分</th><th>是否饱和</th></tr></thead>
+      <tbody>
+        <tr><td><strong>MMLU</strong></td><td>57个学科知识广度（高中→大学专业）</td><td>⭐⭐⭐</td><td>4选1</td><td>旗舰约 88–90%（见官方）</td><td style="color:var(--yellow)">趋于饱和</td></tr>
+        <tr><td><strong>MMLU-Pro</strong></td><td>MMLU增强版，增加干扰项、难度更大</td><td>⭐⭐⭐⭐</td><td>10选1</td><td>见 MMLU-Pro 榜单</td><td style="color:var(--green)">仍有区分度</td></tr>
+        <tr><td><strong>HumanEval</strong></td><td>Python代码生成（函数级）</td><td>⭐⭐⭐</td><td>编程</td><td>Claude 4 93.8%</td><td style="color:var(--yellow)">趋于饱和</td></tr>
+        <tr><td><strong>SWE-bench Ver.</strong></td><td>解决真实GitHub Issue（端到端软件工程）</td><td>⭐⭐⭐⭐⭐</td><td>编程实战</td><td>见 swebench.com</td><td style="color:var(--green)">最具挑战</td></tr>
+        <tr><td><strong>AIME 2025</strong></td><td>美国数学邀请赛（竞赛级数学推理）</td><td>⭐⭐⭐⭐⭐</td><td>数学竞赛</td><td>见 AIME 榜单</td><td style="color:var(--green)">高区分度</td></tr>
+        <tr><td><strong>GPQA Diamond</strong></td><td>研究生级学科推理（物理/化学/生物）</td><td>⭐⭐⭐⭐⭐</td><td>专家问答</td><td>见 GPQA 榜单</td><td style="color:var(--green)">高难度</td></tr>
+        <tr><td><strong>GSM8K</strong></td><td>小学数学应用题（多步推理）</td><td>⭐⭐</td><td>数学</td><td>多模型 95%+</td><td style="color:var(--red)">严重饱和</td></tr>
+        <tr><td><strong>MATH-500</strong></td><td>高中数学竞赛题</td><td>⭐⭐⭐⭐</td><td>数学</td><td>o3-pro 96%+</td><td style="color:var(--yellow)">接近饱和</td></tr>
+        <tr><td><strong>HellaSwag</strong></td><td>常识推理（选出最合理的结尾）</td><td>⭐⭐</td><td>4选1</td><td>多模型 95%+</td><td style="color:var(--red)">严重饱和</td></tr>
+        <tr><td><strong>ARC Challenge</strong></td><td>科学推理选择题（小学到初中科学）</td><td>⭐⭐⭐</td><td>4选1</td><td>多模型 96%+</td><td style="color:var(--red)">严重饱和</td></tr>
+        <tr><td><strong>TruthfulQA</strong></td><td>检测模型是否会"胡说八道"（对抗幻觉）</td><td>⭐⭐⭐⭐</td><td>问答</td><td>Claude 3.7 ~75%</td><td style="color:var(--green)">都很差</td></tr>
+        <tr><td><strong>BIG-Bench Hard</strong></td><td>23个困难推理任务（逻辑/因果/时间）</td><td>⭐⭐⭐⭐</td><td>多种</td><td>GPT-4o ~85%</td><td style="color:var(--green)">有区分度</td></tr>
+        <tr><td><strong>HLE (Humanity's Last)</strong></td><td>人类极限级问题（专家级多学科）</td><td>⭐⭐⭐⭐⭐</td><td>专家级</td><td>o3 ~12%</td><td style="color:var(--green)">极难</td></tr>
+        <tr><td><strong>LMSYS Arena Elo</strong></td><td>用户盲测投票（真实人类偏好）</td><td>⭐⭐⭐</td><td>用户投票</td><td>见 LMSYS 榜单</td><td style="color:var(--green)">最真实</td></tr>
+        <tr><td><strong>AA Int. Index</strong></td><td>多基准综合指数（标准化汇总）</td><td>⭐⭐⭐⭐</td><td>综合</td><td>见 AA 官网</td><td style="color:var(--green)">权威综合</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">📈 当前评测格局解读（2026年5月）</div>
+  <div class="grid-2">
+    <div class="dbox"><h3>🔵 知识广度：谁最博学？</h3>
+      <p><strong>MMLU/MMLU-Pro</strong> 测试模型的知识储备。旗舰 MMLU 普遍 >88%，但模型间差距已很小。MMLU高分不代表实际好用，更像"考试型选手"。</p>
+      <div class="note">💡 2026年后，MMLU高分的意义下降。关键看MMLU-Pro（10选1）的区分度更高。</div>
+    </div>
+    <div class="dbox"><h3>🟢 编程能力：谁最懂代码？</h3>
+      <p><strong>SWE-bench Verified</strong> 是最具含金量的编程基准（解决真实 GitHub Issue）。编程向模型请以 <a href="https://www.swebench.com" target="_blank">swebench.com</a> 实时榜单为准；闭源与开源榜首会随版本更新变化。</p>
+    </div>
+    <div class="dbox"><h3>🟡 推理能力：谁最会思考？</h3>
+      <p><strong>AIME 2025</strong>（数学竞赛）与 <strong>GPQA Diamond</strong>（研究生推理）区分度最高。推理型模型（如 OpenAI o 系列、DeepSeek-R1）在此类榜单上领先；具体分数请查各基准官方发布页，勿采信单一营销稿。</p>
+    </div>
+    <div class="dbox"><h3>🔴 人类偏好：用户最喜欢谁？</h3>
+      <p><strong>LMSYS Chatbot Arena</strong> 通过用户盲测投票反映主观偏好，与客观基准可能不一致。排名见 <a href="https://chat.lmsys.org" target="_blank">chat.lmsys.org</a>，适合作为「用起来顺不顺」的参考，不能替代业务场景实测。</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox"><h3>📋 快速自查：这个分数可信吗？</h3>
+    <div class="cmp-row"><div class="cmp-label">看到某个模型宣称"MMLU 88%"</div><div>→ 2026年所有旗舰都>88%，这不能说明什么</div></div>
+    <div class="cmp-row"><div class="cmp-label">看到"GSM8K 97%+"</div><div>→ 这个基准已严重饱和，模型可能背过答案</div></div>
+    <div class="cmp-row"><div class="cmp-label">看到"SWE-bench 80%+"</div><div>→ 这才是含金量，说明模型真的能解决实际问题</div></div>
+    <div class="cmp-row"><div class="cmp-label">看到"数据污染警告"</div><div>→ 部分基准的题目已出现在训练数据中，高分可能是"背出来"的</div></div>
+    <div class="warn">⚠️ <strong>数据污染</strong>是当前评测最大的问题。GSM8K、MMLU、HumanEval三个基准已被广泛污染。SWE-bench和AIME因题目不断更新，是目前最可靠的评测基准。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox"><h3>📌 关键结论</h3>
+    <ul>
+      <li><strong>看编程实力：</strong>看SWE-bench得分（最真实）</li>
+      <li><strong>看推理实力：</strong>看AIME 2025 + GPQA Diamond</li>
+      <li><strong>看综合实力：</strong>看AA Intelligence Index（多基准汇总）</li>
+      <li><strong>看实际体验：</strong>看LMSYS Chatbot Arena Elo（用户投票）</li>
+      <li><strong>不要信：</strong>GSM8K >85%、MMLU >85%——这些说明不了任何问题</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec-title" id="eval-ops">🔬 三层评估体系</div>
+  <div class="grid-3">
+    <div class="card"><div class="card-name">离线评测</div><div class="card-desc">固定问答集 + 自动打分（相似度/规则/LLM-as-judge），发版前回归。</div></div>
+    <div class="card"><div class="card-name">在线指标</div><div class="card-desc">延迟 P95、错误率、Token 成本、用户点赞/点踩、会话完成率。</div></div>
+    <div class="card"><div class="card-name">人工抽检</div><div class="card-desc">每周抽样对话，查幻觉、合规、品牌语气；不可替代。</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🛠️ 常用工具（开源/商业）</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>工具</th><th>用途</th><th>链接</th></tr></thead>
+      <tbody>
+        <tr><td>Langfuse</td><td>Trace、Prompt 版本、成本统计</td><td><a href="https://langfuse.com" target="_blank">langfuse.com</a></td></tr>
+        <tr><td>LangSmith</td><td>LangChain 生态调试与评测</td><td><a href="https://smith.langchain.com" target="_blank">smith.langchain.com</a></td></tr>
+        <tr><td>Weights & Biases</td><td>实验与模型训练追踪</td><td><a href="https://wandb.ai" target="_blank">wandb.ai</a></td></tr>
+        <tr><td>Ragas</td><td>RAG 专用评测框架</td><td><a href="https://github.com/explodinggradients/ragas" target="_blank">GitHub</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">📋 上线前检查</div>
+  <div class="dbox"><ol>
+    <li>准备 ≥50 条真实业务问答作为黄金集</li>
+    <li>定义「拒答」与「转人工」规则</li>
+    <li>配置敏感词与 PII 脱敏</li>
+    <li>设定 Token 预算告警</li>
+    <li>制定模型/API 故障降级方案（备用模型）</li>
+  </ol></div>
+
+  <hr class="divider">
+
+  <div class="sec-title" id="safety">⚖️ 安全·伦理·法规</div>
+  <div class="dbox"><h3>🎯 为什么安全与法规不可忽视？</h3>
+    <div class="grid-3" style="margin-top:12px">
+      <div class="ci"><div class="ci-name">⚠️ 模型幻觉</div><div class="ci-note">大模型会"自信地胡说八道"。在医疗/法律/金融场景中，一次幻觉可能导致严重损失。RAG和提示词工程可缓解但不能根除。</div></div>
+      <div class="ci"><div class="ci-name">🔒 数据安全</div><div class="ci-note">企业数据输入AI API后可能被用于训练。数据脱敏、本地部署、合规审计是企业AI落地的硬性要求。</div></div>
+      <div class="ci"><div class="ci-name">⚖️ 合规风险</div><div class="ci-note">中国《生成式AI管理暂行办法》要求AI服务须备案、内容须审核。欧盟AI Act按风险分级监管，违规罚款可达全球营收7%。</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🌐 全球AI监管三大支柱</div>
+  <div class="dbox"><h3>🇨🇳 中国：最落地的监管体系</h3>
+    <ul>
+      <li><strong>《生成式人工智能服务管理暂行办法》</strong>（2023年8月生效，2025修订）：是中国AI监管的基石。要求AI生成内容须标识、服务提供者须备案、训练数据须合规</li>
+      <li><strong>《人工智能生成合成内容标识办法》</strong>（2025年9月实施）：强制要求AI生成内容添加"数字水印"，用户在互动情景中须被告知正在与AI交互</li>
+      <li><strong>备案流程：</strong>面向C端用户提供生成式AI服务须通过<a href="https://www.cac.gov.cn" target="_blank">国家网信办</a>算法备案。流程：准备材料（算法原理说明、安全评估报告、数据合规证明）→ 提交网信办 → 技术检测（约15-20个工作日）→ 审核公示（约15-30个工作日）→ 备案完成。全程约30-60个工作日</li>
+      <li><strong>对创业者的影响：</strong>B端技术服务（给企业做AI系统）通常无需备案；C端产品（AI聊天/微信Bot）需要备案+内容审核+实名认证</li>
+      <li><strong>违规案例：</strong>2025年8月，某AI写作工具因生成不实信息被网信办约谈整改；2025年10月，某AI绘画平台因未标识AI生成内容被罚款。这些案例表明监管正从"指导"走向"执法"</li>
+    </ul>
+  </div>
+  <div class="dbox"><h3>🇪🇺 欧盟：《AI法案》——全球最严</h3>
+    <ul>
+      <li><strong>风险分级：</strong>不可接受风险（禁止）→ 高风险（严格合规）→ 有限风险（透明义务）→ 低风险（无限制）</li>
+      <li><strong>高风险系统：</strong>涉及生物识别、关键基础设施、教育、就业、执法等场景，需进行合格评估、建立风险管理</li>
+      <li><strong>通用AI规则：</strong>GPT-4/Claude级基础模型需满足透明度义务（披露训练数据摘要、能源消耗等）</li>
+      <li><strong>罚款：</strong>最高达全球年营收7%或€3500万</li>
+    </ul>
+  </div>
+  <div class="dbox"><h3>🇺🇸 美国：宽松灵活，鼓励创新</h3>
+    <ul>
+      <li><strong>行政令（2023年10月）：</strong>拜登签署AI行政令，要求AI系统开发者向政府提交安全测试结果</li>
+      <li><strong>2025年转向：</strong>特朗普2.0时代更强调"AI领导地位"，联邦层面立法进展缓慢，各州自行立法</li>
+      <li><strong>版权争议：</strong>纽约时报vs OpenAI的版权诉讼是标志性案件，核心问题是"用受版权保护的数据训练AI是否侵权"</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🧠 AI核心安全议题</div>
+  <div class="grid-2">
+    <div class="dbox"><h3>🔮 幻觉（Hallucination）</h3>
+      <p>模型生成看似合理但实际错误的内容。TruthfulQA基准显示，顶尖模型也仅有~75%准确率。RAG是当前缓解幻觉最有效的方法，但无法100%消除。</p>
+      <div class="note">💡 关键实践：对AI输出"要求引用来源"、"不确定时说不知道"、"高价值场景人工审核"。RAG方案可显著降低幻觉。</div>
+    </div>
+    <div class="dbox"><h3>🎯 对齐（Alignment）</h3>
+      <p>确保AI的"目标"与人类价值观一致。RLHF（人类反馈强化学习）是最主要的对齐技术，DPO（直接偏好优化）是更简单替代方案。</p>
+      <div class="tip">Anthropic（Claude制造商）将对齐作为公司核心使命，其"宪法AI"方法通过一套原则引导模型行为。</div>
+    </div>
+    <div class="dbox"><h3>🔒 数据偏见</h3>
+      <p>训练数据中的性别/种族/地域偏见会被模型放大。例如：AI生成的"CEO图片"可能全是白种男性。</p>
+      <ul><li>解决：多样化训练数据 + 偏见检测工具（如IBM AI Fairness 360）</li></ul>
+    </div>
+    <div class="dbox"><h3>📜 知识产权争议</h3>
+      <p>纽约时报诉OpenAI、Getty Images诉Stability AI等案件，核心争议："用版权数据训练AI是否侵犯版权？" 目前全球法律仍无统一结论，但中国规定"不得侵害他人依法享有的知识产权"。</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🛡️ AI安全对齐流派</div>
+  <div class="dbox">
+    <div class="cmp-row"><div class="cmp-label">RLHF（OpenAI/Google）</div><div>人类标注偏好→训练奖励模型→PPO强化学习。效果最好但成本最高。ChatGPT"好用"的核心技术。</div></div>
+    <div class="cmp-row"><div class="cmp-label">DPO（主流开源方案）</div><div>直接优化偏好数据，跳过奖励模型训练。更简单、更稳定、成本更低。2024年后成为开源社区首选。</div></div>
+    <div class="cmp-row"><div class="cmp-label">宪法AI（Anthropic）</div><div>用一套原则（宪法）引导模型行为，减少对人类标注的依赖。Claude的安全底座。</div></div>
+    <div class="cmp-row"><div class="cmp-label">红队测试（Red Teaming）</div><div>模拟攻击者试图让模型输出有害内容，发现安全盲点。是发布前的标准流程。</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox"><h3>📌 对AI创业者的合规清单</h3>
+    <ol>
+      <li><strong>确认服务类型：</strong>B端（无需备案）vs C端（需备案+审核+标识）</li>
+      <li><strong>内容审核：</strong>接入关键词过滤+图像审核API（阿里云/腾讯云/百度都提供）</li>
+      <li><strong>AI标识：</strong>C端产品必须明确告知用户正在与AI互动（中国法规+欧盟AI Act都要求）</li>
+      <li><strong>数据合规：</strong>用户数据须脱敏、不能用于模型训练、符合个人信息保护法</li>
+      <li><strong>服务备案：</strong>生成式AI在C端上线前，向网信办提交算法备案（流程约30-60天）</li>
+      <li><strong>保险：</strong>企业级AI产品建议购买AI责任险，覆盖潜在的版权/错误输出风险</li>
+    </ol>
+    <div class="warn">⚠️ 2025年8月已有多起"AI生成不实内容被处罚"案例。中国监管正从"宽松指导"走向"严格执行"。合规不是可选项，是必选项。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox"><h3>📝 AI内容标识实操示例</h3>
+    <div class="grid-2">
+      <div>
+        <h4>文本内容标识</h4>
+        <div class="code">本文由AI辅助生成，仅供参考<br>生成时间：2026-05-16<br>模型：GPT-4o / Claude 3.7</div>
+      </div>
+      <div>
+        <h4>图片/视频标识</h4>
+        <div class="code">C2PA数字水印（内容来源和真实性联盟标准）<br>支持：Adobe · Microsoft · Google · 腾讯</div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:16px">💡 建议：在产品层面统一接入标识系统，而非依赖用户手动标注。可使用阿里云内容安全API或腾讯云内容安全服务自动添加标识。</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec-title" id="careers">🎓 学习·认证·职业</div>
+  <div class="dbox"><h3>🔥 2026年AI人才市场全景</h3>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">20%</div><div class="stat-label">AI岗位年增长率</div></div>
+      <div class="stat"><div class="stat-num">¥30-70K</div><div class="stat-label">大模型算法月薪</div></div>
+      <div class="stat"><div class="stat-num">¥15-35K</div><div class="stat-label">AI应用开发月薪</div></div>
+      <div class="stat"><div class="stat-num">¥8-18K</div><div class="stat-label">AI提示工程师月薪</div></div>
+    </div>
+    <div class="note">📊 数据来源：2026年Q1主流招聘平台统计。大模型算法岗年薪百万已成常态，AI应用开发岗需求最大。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🏢 AI岗位全景</div>
+  <div class="sec-sub">从提示工程师到AI研究员——薪资与技术栈速查</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>岗位</th><th>月薪范围</th><th>核心技能</th><th>需求趋势</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AI提示工程师</strong></td><td>¥8K-18K</td><td>提示词工程、模型调优、评估测试</td><td>↑ 新岗位、门槛低</td></tr>
+        <tr><td><strong>AI应用开发</strong></td><td>¥15K-35K</td><td>Python、LangChain、RAG、API调用</td><td>↑↑ 需求最大</td></tr>
+        <tr><td><strong>大模型算法</strong></td><td>¥30K-70K</td><td>深度学习、PyTorch、模型训练、微调</td><td>↑ 高薪但门槛高</td></tr>
+        <tr><td><strong>AI产品经理</strong></td><td>¥20K-45K</td><td>产品设计、AI策略、数据驱动、行业知识</td><td>↑↑ 增长最快</td></tr>
+        <tr><td><strong>AI运维/MLOps</strong></td><td>¥18K-35K</td><td>Docker、K8s、vLLM、模型部署</td><td>↑ 需求稳定</td></tr>
+        <tr><td><strong>AI研究员(硕博)</strong></td><td>¥40K-100K+</td><td>论文发表、前沿探索、模型研发</td><td>→ 竞争激烈</td></tr>
+        <tr><td><strong>AI数据工程师</strong></td><td>¥15K-30K</td><td>数据清洗、标注、特征工程、向量化</td><td>↑ 需求增长</td></tr>
+        <tr><td><strong>AI销售/BD</strong></td><td>¥12K-30K+提成</td><td>行业理解、AI方案设计、客户沟通</td><td>↑↑ 缺口大</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🏅 AI认证指南</div>
+  <div class="sec-sub">哪些认证有含金量？按职业方向推荐</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-name"><a href="https://www.deeplearning.ai" target="_blank">DeepLearning.AI 专项</a></div><div class="card-co">Andrew Ng / Coursera</div><div class="card-desc">AI入门黄金标准。深度学习专项、ChatGPT Prompt Engineering等课程，全球数百万学习者。¥300-500/课程。</div></div>
+    <div class="card"><div class="card-name"><a href="https://aws.amazon.com/certification" target="_blank">AWS ML/AI认证</a></div><div class="card-co">Amazon AWS</div><div class="card-desc">AWS Certified ML Specialty是云AI领域的通行证。适合企业级AI部署方向。考试费\$300。</div></div>
+    <div class="card"><div class="card-name"><a href="https://learn.microsoft.com/ai" target="_blank">Microsoft Azure AI</a></div><div class="card-co">Microsoft</div><div class="card-desc">Azure AI Engineer Associate认证，覆盖OpenAI服务/AI Studio/Copilot。企业市场认可度极高。</div></div>
+    <div class="card"><div class="card-name"><a href="https://www.tensorflow.org/certificate" target="_blank">TensorFlow 认证</a></div><div class="card-co">Google</div><div class="card-desc">TensorFlow Developer Certificate，深度学习框架能力证明。适合模型训练方向。考试费\$100。</div></div>
+    <div class="card"><div class="card-name"><a href="https://www.fast.ai" target="_blank">Fast.ai 实战课</a></div><div class="card-co">Fast.ai</div><div class="card-desc">免费高质AI课程，从代码实战入手。适合有编程基础的学习者，被公认为"少走弯路的AI入门"。</div></div>
+    <div class="card"><div class="card-name"><a href="https://www.cloudskillsboost.google" target="_blank">Google Cloud AI</a></div><div class="card-co">Google Cloud</div><div class="card-desc">Google Cloud ML Engineer认证，覆盖Vertex AI/Gemini API。适合GCP生态用户。</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">📅 6个月AI学习路线图</div>
+  <div class="sec-sub">从零基础到可就业——每天1-2小时</div>
+  <div class="dbox">
+    <div class="tl" style="padding-left:30px">
+      <div class="tl-item"><div class="tl-dot" style="background:var(--green)"></div><div class="tl-yr">第1-2月 · 基础入门</div>
+        <div class="tl-card"><h4>AI概念 + Python + 提示词</h4><p>了解大模型发展史（本站history.html）→ 学Python基础（30天）→ 提示词工程实战（<a href="prompt.html">提示词</a>）→ 用ChatGPT/Claude做日常助手。<strong>目标：能用AI提效日常工作。</strong></p></div>
+      </div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--accent)"></div><div class="tl-yr">第3-4月 · 技能进阶</div>
+        <div class="tl-card"><h4>API调用 + RAG + 编码工具</h4><p>学Python调用OpenAI/DeepSeek API（<a href="api-integration.html#gateway">API·网关</a>）→ 搭建RAG知识库（<a href="rag.html">RAG</a>）→ 掌握Cursor/Copilot编码（<a href="coding.html">编码</a>）。<strong>目标：能用API构建AI应用。</strong></p></div>
+      </div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--accent2)"></div><div class="tl-yr">第5-6月 · 项目实战</div>
+        <div class="tl-card"><h4>Agent + 部署 + 垂直应用</h4><p>用Dify搭建Agent（<a href="agents.html">Agent</a>）→ 用vLLM/Ollama部署模型（<a href="finetune.html">部署</a>）→ 针对一个行业做AI产品（<a href="industries.html">行业</a>+<a href="startup.html">创业</a>）。<strong>目标：做出可用产品，建立作品集。</strong></p></div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+<footer><p>AI大模型全景培训手册 · 评测·生产·合规·职业 · 2026年5月版</p></footer>
+</body>
+</html>

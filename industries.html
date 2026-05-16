@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>行业应用 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>🏭 AI行业应用深度解析</h1>
+  <p>22个行业的AI落地现状、代表案例与未来机会</p>
+  <div class="badges"><span class="badge">22个行业</span><span class="badge">50+ 案例</span><span class="badge">全球市场数据</span><span class="badge">落地成熟度</span><span class="badge">市场机会</span></div>
+</div>
+<div class="page-wrap">
+  <div class="page-lead"><strong>本章定位：</strong>按行业梳理落地场景、ROI 与常见坑；选型与架构可对照 <a href="syllabus.html#architecture">应用架构</a>，合规见 <a href="benchmarks.html#safety">安全合规</a>。</div>
+  <div class="sec-title">📊 各行业AI落地总览</div>
+  <div class="sec-sub">按 2025 年中国细分 AI 应用市场规模（公开研报综合估算）从高到低排序 · 成熟度：★☆☆☆☆ 探索 → ★★★★★ 全面普及</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>行业</th><th>落地成熟度</th><th>核心应用方向</th><th>市场规模(2025)</th><th>年增长</th></tr></thead>
+      <tbody>
+        <tr><td>金融</td><td><b style="color:var(--green)">★★★★★</b></td><td>风控/量化/客服/合规/投顾</td><td>¥1200亿</td><td>35%</td></tr>
+        <tr><td>电商零售</td><td><b style="color:var(--green)">★★★★☆</b></td><td>推荐/客服/商品图/供应链</td><td>¥1000亿</td><td>32%</td></tr>
+        <tr><td>内容传媒</td><td><b style="color:var(--green)">★★★★★</b></td><td>写作/配音/视频/营销/设计</td><td>¥900亿</td><td>45%</td></tr>
+        <tr><td>医疗健康</td><td><b style="color:var(--green)">★★★★☆</b></td><td>影像/诊断/新药/病历/健康</td><td>¥800亿</td><td>40%</td></tr>
+        <tr><td>自动驾驶</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>L4运营/辅助驾驶/交通优化</td><td>¥700亿</td><td>35%</td></tr>
+        <tr><td>教育</td><td><b style="color:var(--green)">★★★★☆</b></td><td>个性化/批改/AI家教/测评</td><td>¥600亿</td><td>38%</td></tr>
+        <tr><td>客服与体验</td><td><b style="color:var(--green)">★★★★★</b></td><td>AI语音/智能路由/全渠道</td><td>¥500亿</td><td>35%</td></tr>
+        <tr><td>智能制造</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>质检/预测维护/机器人/排产</td><td>¥500亿</td><td>42%</td></tr>
+        <tr><td>政府/公共服务</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>智能审批/舆情/呼叫中心</td><td>¥450亿</td><td>30%</td></tr>
+        <tr><td>游戏</td><td><b style="color:var(--green)">★★★★☆</b></td><td>NPC/关卡/美术/剧情/运营</td><td>¥400亿</td><td>42%</td></tr>
+        <tr><td>物流供应链</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>路径优化/预测/仓储/分拣</td><td>¥350亿</td><td>38%</td></tr>
+        <tr><td>电信</td><td><b style="color:var(--green)">★★★★☆</b></td><td>网络优化/智能客服/故障预测</td><td>¥300亿</td><td>28%</td></tr>
+        <tr><td>生命科学</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>育种/基因组/药物发现/农业</td><td>¥300亿</td><td>45%</td></tr>
+        <tr><td>保险科技</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>智能核保/AI理赔/精算</td><td>¥250亿</td><td>35%</td></tr>
+        <tr><td>科研能源</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>材料/气候/电网/核聚变</td><td>¥250亿</td><td>50%</td></tr>
+        <tr><td>法律</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>合同审查/案例/法律咨询</td><td>¥200亿</td><td>50%</td></tr>
+        <tr><td>HR人力资源</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>简历筛选/面试/绩效评估</td><td>¥150亿</td><td>40%</td></tr>
+        <tr><td>AI网络安全</td><td><b style="color:var(--yellow)">★★★☆☆</b></td><td>威胁检测/身份认证/防火墙</td><td>¥130亿</td><td>23.4%</td></tr>
+        <tr><td>房地产</td><td><b style="color:var(--yellow)">★★☆☆☆</b></td><td>AI看房/营销/设计/估价</td><td>¥100亿</td><td>55%</td></tr>
+        <tr><td>建筑/工程</td><td><b style="color:var(--yellow)">★★☆☆☆</b></td><td>BIM优化/设计/安全监测</td><td>¥80亿</td><td>48%</td></tr>
+        <tr><td>旅游与酒店</td><td><b style="color:var(--yellow)">★★☆☆☆</b></td><td>AI行程/动态定价/智能前台</td><td>¥80亿</td><td>42%</td></tr>
+        <tr><td>体育与健身</td><td><b style="color:var(--yellow)">★★☆☆☆</b></td><td>运动分析/AI教练/智能转播</td><td>¥50亿</td><td>50%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">📊 全球AI市场总览</div>
+  <div class="sec-sub">2025-2026年全球AI行业核心数据</div>
+  <div class="stat-row stat-row--market">
+    <div class="stat"><div class="stat-num">$7,575亿</div><div class="stat-label">2025 全球 AI 市场</div></div>
+    <div class="stat"><div class="stat-num">$9,000亿+</div><div class="stat-label">2026 预计规模</div></div>
+    <div class="stat"><div class="stat-num">¥1.25万亿</div><div class="stat-label">2026 中国 AI 市场</div></div>
+    <div class="stat"><div class="stat-num">42.5%</div><div class="stat-label">生成式 AI 复合增长</div></div>
+    <div class="stat"><div class="stat-num">71%</div><div class="stat-label">全球企业已部署 AI</div></div>
+    <div class="stat"><div class="stat-num">¥9,000亿+</div><div class="stat-label">2025 中国 AI 核心产业</div></div>
+  </div>
+  <hr class="divider">
+  <div class="sec-title">🏗️ 更多AI垂直领域</div>
+  <div class="sec-sub">AI正在渗透每一个角落——新增6个垂直场景</div>
+  <div class="industry-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;">
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(239,68,68,.15)">🔒</div><div><h3>AI网络安全</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速23.4%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:55%"></div></div>
+      <p>2024年中国AI安全市场约¥18亿美元（占网络安全支出16%），金融/制造/服务为三大核心投入领域。</p>
+      <ul>
+        <li><strong>威胁检测：</strong>AI实时分析流量，APT攻击检出率提升60%</li>
+        <li><strong>身份认证：</strong>AI生物识别+行为分析，防止账号盗用</li>
+        <li><strong>创业机会：</strong>中小企业AI安全SaaS、AI渗透测试工具</li>
+      </ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(6,182,212,.15)">🏦</div><div><h3>保险科技</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速35%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:52%"></div></div>
+      <ul>
+        <li><strong>智能核保：</strong>AI分析健康/驾驶数据，10秒完成风险评估</li>
+        <li><strong>AI理赔：</strong>图像识别定损，处理时间3天→3小时</li>
+        <li><strong>创业机会：</strong>AI车险定损SaaS、健康险智能核保</li>
+      </ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(245,158,11,.15)">🏨</div><div><h3>旅游与酒店</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★☆☆☆</b> · 增速42%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:43%"></div></div>
+      <ul>
+        <li><strong>AI行程规划：</strong>根据预算/兴趣自动生成旅行方案</li>
+        <li><strong>智能定价：</strong>动态房价AI优化，入住率提升20%</li>
+        <li><strong>创业机会：</strong>中小酒店AI运营SaaS、旅游规划工具</li>
+      </ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(139,92,246,.15)">📡</div><div><h3>电信与通信</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--green)">★★★★☆</b> · 增速28%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:72%"></div></div>
+      <ul>
+        <li><strong>网络优化：</strong>AI自动调优基站参数，容量提升30%</li>
+        <li><strong>智能客服：</strong>运营商AI客服解决率超85%</li>
+        <li><strong>创业机会：</strong>电信AI运维工具、5G+AI场景方案</li>
+      </ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(16,185,129,.15)">🎯</div><div><h3>体育与健身</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★☆☆☆</b> · 增速50%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:38%"></div></div>
+      <ul>
+        <li><strong>运动分析：</strong>AI视频分析运动员姿势，伤病预防</li>
+        <li><strong>AI教练：</strong>摄像头识别健身动作偏差，实时纠正</li>
+        <li><strong>创业机会：</strong>AI健身私教APP、AI体育青训系统</li>
+      </ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(59,130,246,.15)">📞</div><div><h3>客户体验与呼叫中心</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--green)">★★★★★</b> · 增速35%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:90%"></div></div>
+      <p>AI解决率从38%升至92%。Gartner预测2028年15%决策由AI自主做出。</p>
+      <ul>
+        <li><strong>全渠道：</strong>电话/微信/网页统一AI客服后台</li>
+        <li><strong>智能路由：</strong>AI分析情绪+意图自动转接</li>
+        <li><strong>创业机会：</strong>中小企AI呼叫中心SaaS</li>
+      </ul></div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🔍 各行业深度解析</div>
+  <div class="sec-sub">从落地案例到商业机会，告诉你每个行业现在做到什么程度</div>
+
+  <div class="industry-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;">
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(16,185,129,.15)">🏥</div><div><h3>医疗健康</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--green)">★★★★☆</b> · 增速40%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:80%"></div></div>
+      <p>AI在医疗领域已从"锦上添花"变成"雪中送炭"。影像诊断是最成熟的落地方向，AI在肺癌/乳腺癌/视网膜病变筛查上已超越初级医师水平。新药研发方面，AlphaFold3将蛋白质结构预测精度提升到原子级别，药物发现周期从10年压缩到2-3年。</p>
+      <ul><li><strong>影像诊断：</strong>AI读片准确率>95%，乳腺癌漏诊率降低40%</li><li><strong>药物研发：</strong>Al将10年+$20亿的研发周期缩短到2-3年+$3亿</li><li><strong>代表公司：</strong>推想科技、科大讯飞医疗、百度灵医智惠</li><li><strong>创业机会：</strong>基层医院AI辅助诊断SaaS、影像云平台</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(245,158,11,.15)">📚</div><div><h3>教育</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--green)">★★★★☆</b> · 增速38%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:78%"></div></div>
+      <p>Duolingo借助GPT-4实现用户增长翻倍，Khan Academy Khanmigo实现1v1苏格拉底式AI家教。个性化学习引擎可根据学生水平动态调整课程难度，学习效率提升30-40%。作文自动批改、数学解题分析大幅减轻教师工作量。</p>
+      <ul><li><strong>AI家教：</strong>Khanmigo、可汗学院/作业帮AI答疑</li><li><strong>语言学习：</strong>Duolingo Max + GPT-4深度集成</li><li><strong>代表公司：</strong>作业帮、猿辅导、网易有道、松鼠AI</li><li><strong>创业机会：</strong>职业培训AI导师、K12 AI学习伴侣</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(59,130,246,.15)">💰</div><div><h3>金融</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--green)">★★★★★</b> · 增速35%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:92%"></div></div>
+      <p>金融是AI渗透最深的行业。欺诈检测实时响应&lt;10ms、准确率>99.5%；AI投顾管理万亿资产；合同/监管报告自动生成，审核效率提升80%。Bloomberg GPT和FinGPT是金融专用大模型的代表。</p>
+      <ul><li><strong>智能投顾：</strong>Bloomberg GPT、FinGPT、蚂蚁AI</li><li><strong>风险控制：</strong>实时欺诈检测、信用评估模型</li><li><strong>代表公司：</strong>蚂蚁、招行、平安、东方证券</li><li><strong>创业机会：</strong>中小企业财务AI助手、合规自动化SaaS</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(139,92,246,.15)">🏭</div><div><h3>智能制造</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速42%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:65%"></div></div>
+      <p>工业AI从质量检测起步，逐步扩展到预测维护和生产排程。AI视觉检测速度是人工20倍、缺陷检出率99.7%。具身智能机器人在2025-2026进入量产，特斯拉Optimus和Figure 01开始在工厂替代重复性劳动。</p>
+      <ul><li><strong>AI质检：</strong>视觉检测检出率99.7%，速度提升20倍</li><li><strong>预测维护：</strong>设备故障预测准确率85%，停机减少30%</li><li><strong>代表公司：</strong>富士康AI工厂、海尔卡奥斯、西门子</li><li><strong>创业机会：</strong>中小工厂AI质检SaaS、工业IoT分析平台</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(239,68,68,.15)">⚖️</div><div><h3>法律</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速50%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:62%"></div></div>
+      <p>合同审查是最成熟的落地方向，数百页合同10分钟审完、风险识别准确率92%。案例检索数百万份判决文书秒级匹配。Harvey AI估值超7亿美元，是法律AI的标杆。国内ChatLaw等产品也快速发展。</p>
+      <ul><li><strong>合同审查：</strong>Harvey AI、法律大模型、法天使</li><li><strong>智能检索：</strong>案例秒级匹配、胜诉率预测</li><li><strong>代表公司：</strong>Harvey AI、ChatLaw、幂律智能</li><li><strong>创业机会：</strong>中小企业合同AI审查SaaS、法律自助问答</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(6,182,212,.15)">✍️</div><div><h3>内容创作与传媒</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--green)">★★★★★</b> · 增速45%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:95%"></div></div>
+      <p>AI写作是最先达到"够用"水平的领域。营销文案、新闻报道、社交媒体内容AI生成率已超过50%。数字人直播24小时不间断、成本降低90%。Sora/可灵等视频生成工具让短视频制作门槛降到零。</p>
+      <ul><li><strong>AI写作：</strong>Jasper/Writesonic/小红书文案AI</li><li><strong>数字人：</strong>HeyGen/硅基智能/腾讯智影</li><li><strong>代表公司：</strong>字节豆包、快手可灵、新华社</li><li><strong>创业机会：</strong>AI内容矩阵SAAS、本地生活AI营销</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(245,158,11,.15)">🛒</div><div><h3>电商与零售</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--green)">★★★★☆</b> · 增速32%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:85%"></div></div>
+      <p>推荐系统是AI电商最成熟的领域，点击率提升35%。AI换背景/模特使商品拍摄成本降低80%。智能客服解决80%常规问题。阿里/京东/拼多多全面落地。2025年约40%的商品主图由AI生成。</p>
+      <ul><li><strong>AI商品图：</strong>阿里/京东AI商品图工具</li><li><strong>智能推荐：</strong>多目标优化、实时个性化</li><li><strong>代表公司：</strong>淘宝/京东/拼多多/抖音电商</li><li><strong>创业机会：</strong>中小商家AI营销工具、垂直电商AI客服</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(16,185,129,.15)">🚗</div><div><h3>自动驾驶与交通</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速35%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:60%"></div></div>
+      <p>端到端大模型技术路线战胜传统模块化方案。特斯拉FSD V12覆盖200万辆车。百度萝卜快跑在武汉/北京Robotaxi已接单超500万次，成为全球最大规模自动驾驶运营。</p>
+      <ul><li><strong>Robotaxi：</strong>萝卜快跑、Waymo、Apollo Go</li><li><strong>辅助驾驶：</strong>特斯拉FSD、华为ADS、蔚来NIO Pilot</li><li><strong>代表公司：</strong>百度、特斯拉、华为、小鹏</li><li><strong>创业机会：</strong>AI交通信号优化、物流配送机器人</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(139,92,246,.15)">💊</div><div><h3>生命科学与农业</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速45%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:55%"></div></div>
+      <p>AI育种筛选优质基因使育种周期缩短50%；无人机+AI病虫害检测使农药用量减少30%；AI基因组学可分析数百万基因数据。精准农业是农业AI最大市场。</p>
+      <ul><li><strong>AI育种：</strong>先正达、华大智造</li><li><strong>精准农业：</strong>京东农场、大疆农业</li><li><strong>创业机会：</strong>农作物AI诊断APP、农业无人机SaaS</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(6,182,212,.15)">🔬</div><div><h3>科研与能源</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速50%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:58%"></div></div>
+      <p>AI正从"辅助工具"跃升为"第四研究范式"。Google DeepMind发现220万种新材料晶体；华为盘古气象模型精度超传统数值模型、预测提速1000倍；AI核聚变等离子体控制取得突破性进展。</p>
+      <ul><li><strong>材料发现：</strong>DeepMind GNoME发现220万新材料</li><li><strong>气象模型：</strong>华为盘古/Google GraphCast</li><li><strong>创业机会：</strong>AI能源优化SaaS、气候分析平台</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(59,130,246,.15)">👥</div><div><h3>HR人力资源</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速40%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:55%"></div></div>
+      <p>AI简历筛选可处理每天数千份简历、匹配度分析准确率>90%；AI面试助手可同时进行多轮初筛对话；AI绩效评估分析团队数据给出改进建议。HireVue等公司已服务数万家企业。</p>
+      <ul><li><strong>简历筛选：</strong>AI匹配+个性化排序</li><li><strong>AI面试：</strong>HireVue、牛客AI面试</li><li><strong>创业机会：</strong>中小企AI招聘SaaS、员工AI培训系统</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(245,158,11,.15)">🏠</div><div><h3>房地产</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★☆☆☆</b> · 增速55%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:42%"></div></div>
+      <p>AI看房咨询智能体自动介绍楼盘/户型和引导看房；AI营销文案生成投放广告；AI估价模型评估房产价值。这是增速最快的AI新方向之一，2025年复合增长55%。</p>
+      <ul><li><strong>AI看房：</strong>房产咨询智能体</li><li><strong>AI营销：</strong>贝壳/链家AI投放</li><li><strong>创业机会：</strong>中小中介AI营销SaaS、AI房产估价</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(16,185,129,.15)">📦</div><div><h3>物流与供应链</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速38%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:60%"></div></div>
+      <p>AI路径优化使配送效率提升20-30%；需求预测准确率提高15%、库存降低25%；仓储AI分拣机器人效率是人工3倍。京东/顺丰/菜鸟大规模部署AI物流体系。</p>
+      <ul><li><strong>路径优化：</strong>菜鸟/顺丰AI调度</li><li><strong>仓储AI：</strong>京东/Amazon机器人</li><li><strong>创业机会：</strong>中小物流AI调度SaaS、预测分析平台</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(139,92,246,.15)">🎮</div><div><h3>游戏</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--green)">★★★★☆</b> · 增速42%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:76%"></div></div>
+      <p>AI生成游戏资产（角色/场景/道具）使美术制作成本降低60%；AI驱动的NPC实现自然语言对话；AI自动生成关卡和任务。腾讯/网易/米哈游已全面采用AI管线。</p>
+      <ul><li><strong>AI美术：</strong>角色/场景AI生成</li><li><strong>AI NPC：</strong>自然语言对话NPC</li><li><strong>创业机会：</strong>独立游戏AI工具、AI关卡编辑器</li></ul></div>
+    </div>
+
+    <div class="ind-card">
+      <div class="ind-header"><div class="ind-icon" style="background:rgba(6,182,212,.15)">🏛️</div><div><h3>政府/公共服务</h3><span style="font-size:12px;color:var(--muted)">成熟度 <b style="color:var(--yellow)">★★★☆☆</b> · 增速30%</span></div></div>
+      <div class="ind-body"><div class="prog"><div class="prog-fill" style="width:52%"></div></div>
+      <p>AI辅助行政审批自动处理表格填写/材料审核；AI舆情分析实时监测数百信息源；AI政务客服7x24小时解答民生问题。数字化政府转型为AI创造大量场景。</p>
+      <ul><li><strong>智能审批：</strong>浙江"最多跑一次"AI优化</li><li><strong>AI舆情：</strong>舆情监测+民意分析</li><li><strong>创业机会：</strong>政务AI客服、智慧城市AI应用</li></ul></div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+  <div class="dbox">
+    <h3>🎯 创业机会总结——最容易切入的5大赛道</h3>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">1</div><div class="stat-label">AI内容营销SaaS</div><div class="stat-num" style="font-size:14px;color:var(--green)">¥0起步</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">行业AI客服</div><div class="stat-num" style="font-size:14px;color:var(--green)">¥1000起步</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">AI知识库RAG</div><div class="stat-num" style="font-size:14px;color:var(--green)">¥500起步</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">AI编码代理</div><div class="stat-num" style="font-size:14px;color:var(--green)">¥0起步</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">垂直AI Tutor</div><div class="stat-num" style="font-size:14px;color:var(--green)">¥500起步</div></div>
+    </div>
+    <div class="note">💡 <strong>核心逻辑：</strong>不要和巨头比通用模型，找到你和行业客户的"认知差"。你在哪个行业有资深经验，就用AI去赋能那个行业。需求真实、付费意愿强、竞争少。</div>
+  </div>
+</div>
+<footer><p>AI大模型全景培训手册 · 行业应用 · 2026年5月版</p><p>数据来源：IDC · Gartner · 中国信通院 · 各行业协会公开报告 · 2025-2026年市场研究</p><p><a href="manual.html">← 返回培训首页</a> | <a href="finetune.html">← 模型部署</a> | <a href="agents.html">下一章：Agent框架 →</a></p></footer>
+</body>
+</html>

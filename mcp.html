@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCP协议 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>🔗 MCP（Model Context Protocol）</h1>
+  <p>让 AI 安全、标准地连接你的数据与工具——Agent 时代的「USB 接口」</p>
+  <div class="badges"><span class="badge">Anthropic 发起</span><span class="badge">开源生态</span><span class="badge">Cursor / Claude Desktop</span><span class="badge">企业内网集成</span></div>
+</div>
+<div class="page-wrap page-cols">
+  <div class="sticky-toc">
+    <h5>本章目录</h5>
+    <a href="#what">是什么</a>
+    <a href="#concepts">核心概念</a>
+    <a href="#compare">与 FC / 插件对比</a>
+    <a href="#arch">架构与数据流</a>
+    <a href="#hosts">常见 Host</a>
+    <a href="#servers">Server 生态</a>
+    <a href="#config">配置示例</a>
+    <a href="#security">安全治理</a>
+    <a href="#training">培训要点</a>
+    <a href="#links">延伸阅读</a>
+  </div>
+  <div class="page-main">
+    <div class="data-disclaimer"><strong>培训说明：</strong>协议与生态快速演进，以 <a href="https://modelcontextprotocol.io" target="_blank">modelcontextprotocol.io</a> 与官方 GitHub 仓库为准。本页仅讲 MCP，不展开 RAG/提示词等技能篇专题。</div>
+
+    <div class="sec-title" id="what">🎯 MCP 是什么？</div>
+    <div class="dbox">
+      <p><strong>Model Context Protocol（MCP）</strong> 是开放协议，规定 <strong>Host</strong>（如 IDE、桌面聊天应用）如何通过标准方式连接 <strong>MCP Server</strong>，把<strong>资源</strong>（文件、数据库表）和<strong>工具</strong>（调用 API、执行命令）暴露给模型使用。</p>
+      <p>培训中可以把它理解为：在 Function Calling 之上，为「整个应用如何接外部世界」提供的<strong>统一插座标准</strong>——Server 写一次，多个 Host 可复用。</p>
+      <ul>
+        <li>发起方：<a href="https://www.anthropic.com" target="_blank">Anthropic</a>，规范与 SDK 开源</li>
+        <li>官方文档：<a href="https://modelcontextprotocol.io" target="_blank">modelcontextprotocol.io</a></li>
+        <li>规范仓库：<a href="https://github.com/modelcontextprotocol" target="_blank">github.com/modelcontextprotocol</a></li>
+      </ul>
+    </div>
+
+    <hr class="divider">
+    <div class="sec-title" id="concepts">📚 核心概念</div>
+    <div class="grid-2">
+      <div class="card"><div class="card-name">Host</div><div class="card-desc">承载对话的应用，如 Cursor、Claude Desktop。内置 MCP Client，负责把用户意图交给模型并执行工具调用。</div></div>
+      <div class="card"><div class="card-name">MCP Client</div><div class="card-desc">Host 内的连接器，按协议与 Server 通信（常通过 stdio 或 HTTP）。</div></div>
+      <div class="card"><div class="card-name">MCP Server</div><div class="card-desc">独立进程/服务，声明自己能提供哪些 Resources 与 Tools，例如 Postgres、Git、Slack。</div></div>
+      <div class="card"><div class="card-name">Resources</div><div class="card-desc">只读或可读的上下文，如文件内容、数据库 schema，供模型「看见」。</div></div>
+      <div class="card"><div class="card-name">Tools</div><div class="card-desc">可执行动作，如查询、创建工单、发消息；Host 在模型请求后代为调用并回传结果。</div></div>
+      <div class="card"><div class="card-name">Prompts（可选）</div><div class="card-desc">Server 预置的提示模板，Host 可一键插入对话。</div></div>
+    </div>
+
+    <hr class="divider">
+    <div class="sec-title" id="compare">🆚 MCP vs Function Calling vs 传统插件</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>维度</th><th>Function Calling</th><th>MCP</th><th>传统单体插件</th></tr></thead>
+        <tbody>
+          <tr><td><strong>层级</strong></td><td>单次 API 请求内的 JSON 工具声明</td><td>应用 ↔ 外部系统的进程级协议</td><td>每个 Host 各自集成 SDK</td></tr>
+          <tr><td><strong>复用</strong></td><td>每套后端都要写一遍工具执行逻辑</td><td>同一 Server 可被多 Host 使用</td><td>难以跨产品复用</td></tr>
+          <tr><td><strong>典型场景</strong></td><td>自研后端 + OpenAI 兼容 API</td><td>IDE、桌面 Agent、企业内网工具链</td><td>早期 ChatGPT 插件商店模式</td></tr>
+          <tr><td><strong>安全边界</strong></td><td>由你的服务端控制</td><td>Server 进程权限 + Host 审批</td><td>依赖各插件沙箱实现</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip">💡 一句话：<strong>Function Calling</strong> 解决「模型这次回复要调什么函数」；<strong>MCP</strong> 解决「整个产品如何标准化接上 Postgres / Git / 内部 API」。</div>
+
+    <hr class="divider">
+    <div class="sec-title" id="arch">🏗️ 架构与数据流</div>
+    <div class="dbox">
+      <div class="layer-stack">
+        <div class="layer layer-l5"><strong>用户</strong><p>在 Host 中提问：「查一下上周订单异常」</p></div>
+        <div class="layer layer-l4"><strong>Host + MCP Client</strong><p>发现已连接 Order-DB Server，将可用 Tools 列表交给模型</p></div>
+        <div class="layer layer-l3"><strong>大模型</strong><p>决定调用 <code>query_orders</code>，输出结构化参数</p></div>
+        <div class="layer layer-l2"><strong>MCP Server</strong><p>在权限范围内执行 SQL，返回表格 JSON</p></div>
+        <div class="layer layer-l1"><strong>数据源</strong><p>Postgres / 内部 API / 文件系统</p></div>
+      </div>
+      <div class="code" style="margin-top:14px">用户 → Host(Cursor) → MCP Client ⇄ MCP Server(Postgres/Git/…) → 结构化结果 → 模型组织自然语言 → 用户</div>
+    </div>
+
+    <hr class="divider">
+    <div class="sec-title" id="hosts">🖥️ 常见 Host（2025–2026）</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Host</th><th>典型用途</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cursor</strong></td><td>研发写代码、读仓库</td><td>在设置中配置 mcp.json，可接 filesystem、GitHub 等 Server</td></tr>
+          <tr><td><strong>Claude Desktop</strong></td><td>知识工作者本地助手</td><td>官方支持 MCP 配置，适合文档与本地文件</td></tr>
+          <tr><td><strong>Claude Code / 其他 IDE 插件</strong></td><td>终端与 IDE 内 Agent</td><td>生态持续增加，以各产品文档为准</td></tr>
+          <tr><td><strong>自研企业 Portal</strong></td><td>内网问答 + 办单</td><td>可嵌入 MCP Client SDK，与 <a href="agents.html">Agent 编排</a> 组合</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+    <div class="sec-title" id="servers">🧩 常见 MCP Server 类型</div>
+    <div class="grid-2">
+      <div class="card"><div class="card-name">filesystem</div><div class="card-desc">读写工作区文件（需严格路径白名单）。</div></div>
+      <div class="card"><div class="card-name">postgres / sqlite</div><div class="card-desc">只读或受限 SQL，适合数据分析 Copilot。</div></div>
+      <div class="card"><div class="card-name">github / git</div><div class="card-desc">查 PR、Issue、diff，研发场景常见。</div></div>
+      <div class="card"><div class="card-name">slack / 企业 IM</div><div class="card-desc">发消息、查频道（需 OAuth 与审计）。</div></div>
+      <div class="card"><div class="card-name">brave-search 等</div><div class="card-desc">联网检索，注意合规与密钥管理。</div></div>
+      <div class="card"><div class="card-name">自研 Server</div><div class="card-desc">用官方 SDK 包装内部 CRM/工单 API，最小暴露。</div></div>
+    </div>
+    <div class="note">可在 <a href="https://github.com/modelcontextprotocol/servers" target="_blank">modelcontextprotocol/servers</a> 查看社区参考实现；生产环境建议内网自建并审计。</div>
+
+    <hr class="divider">
+    <div class="sec-title" id="config">⚙️ 配置示例（Cursor）</div>
+    <div class="dbox">
+      <p>在项目或用户目录配置 <code>mcp.json</code>（路径以 Cursor 文档为准），示例：</p>
+      <div class="code">{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/dir"]
+    }
+  }
+}</div>
+      <p>培训演示建议：先用<strong>只读</strong>目录或沙箱数据库，避免模型误删文件。与 <a href="api-integration.html">API 集成</a> 课衔接时，对比「自研后端 FC」与「MCP 外挂 Server」两种集成路径。</p>
+    </div>
+
+    <hr class="divider">
+    <div class="sec-title" id="security">🛡️ 安全与治理</div>
+    <div class="dbox"><ul>
+      <li><strong>最小权限：</strong>Server 只暴露必要表/目录/接口；写操作需二次确认或人工审批</li>
+      <li><strong>网络隔离：</strong>生产库 MCP 走内网；禁止把生产密钥放在客户端配置文件</li>
+      <li><strong>审计：</strong>记录 tool 名称、参数摘要、调用结果、操作者（对接 <a href="benchmarks.html#eval-ops">生产观测</a>）</li>
+      <li><strong>提示注入：</strong>恶意文档可能诱导模型调用危险工具——结合 <a href="benchmarks.html#safety">内容安全</a> 与输出复核</li>
+      <li><strong>与 Agent 编排：</strong>多步任务中限制工具调用次数与超时，见 <a href="agents.html">Agent 框架</a></li>
+    </ul></div>
+
+    <hr class="divider">
+    <div class="sec-title" id="training">🎓 培训要点（90 分钟建议）</div>
+    <div class="grid-2">
+      <div class="card"><div class="card-name">业务/产品（30min）</div><div class="card-desc">理解 MCP 解决「接系统」的标准化；与 RAG 分工：RAG 负责「知识」，MCP 负责「动作」。</div></div>
+      <div class="card"><div class="card-name">开发（45min）</div><div class="card-desc">对比 FC 实现路径；在 Cursor 接 1 个只读 Server；讨论自研 Server 的 API 包装。</div></div>
+      <div class="card"><div class="card-name">运维/安全（15min）</div><div class="card-desc">权限、审计、密钥、内网部署 checklist。</div></div>
+      <div class="card"><div class="card-name">课后练习</div><div class="card-desc">列举本部门 3 个可 MCP 化的系统；画一张 Host–Server 数据流草图。</div></div>
+    </div>
+
+    <hr class="divider">
+    <div class="sec-title" id="links">🔗 同章延伸阅读（应用篇）</div>
+    <div class="related-links">
+      <a href="agents.html" class="card card-link"><span class="card-emoji">🤖</span><span class="card-name">Agent 框架</span></a>
+      <a href="api-integration.html#gateway" class="card card-link"><span class="card-emoji">🌐</span><span class="card-name">模型网关</span></a>
+      <a href="industries.html" class="card card-link"><span class="card-emoji">🏭</span><span class="card-name">行业应用</span></a>
+    </div>
+    <p class="sec-sub" style="margin-top:12px">技能篇（API / RAG / 提示词）请通过顶部「技能」篇章切换，不在本页展开。</p>
+  </div>
+</div>
+<footer><p>AI大模型全景培训手册 · MCP · 2026年5月版</p></footer>
+</body>
+</html>

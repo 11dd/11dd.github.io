@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>知识库RAG · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>🧠 私有知识库RAG实战</h1>
+  <p>不训练大模型，让AI"懂"你的私有资料——构建行业Chat应用完整方案</p>
+  <div class="badges"><span class="badge">RAG原理</span><span class="badge">工具选型</span><span class="badge">Dify搭建</span><span class="badge">行业Chat</span><span class="badge">¥1/天起</span></div>
+</div>
+<div class="page-wrap">
+  <div class="dbox"><h3>🎯 RAG核心原理</h3>
+    <p>RAG = Retrieval-Augmented Generation（检索增强生成）。简单说就是"先从你的私有数据里找答案，再让大模型基于找到的内容生成回答"。</p>
+    <div class="note" style="font-size:14px"><strong>完整流程：</strong><br>
+    用户提问 → ① 问题向量化（转成数学向量）→ ② 从向量数据库检索最相似的3-5段文档 → ③ 将文档+问题拼成提示词 → ④ 大模型基于检索内容生成答案<br><br>
+    ✅ <strong>好处：</strong>无需训练模型、资料可随时更新、答案有据可查、成本极低、大客户愿意付费（数据不出网）。
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🔧 RAG技术架构</div>
+  <div class="grid-2">
+    <div class="dbox"><h4>文档解析层</h4>
+      <p>PDF/Word/Excel/PPT/TXT/HTML/Markdown → 文本提取</p>
+      <ul><li>📄 PDF：PyMuPDF/PdfPlumber提取文本+表格</li><li>📝 Word：python-docx解析正文</li><li>📊 Excel：openpyxl提取单元格</li><li>🔗 网页：Trafilatura/BeautifulSoup抓取</li></ul>
+      <div class="tip">LangChain/LlamaIndex内置了所有解析器！</div>
+    </div>
+    <div class="dbox"><h4>文本分割(Chunking)</h4>
+      <p>将长文档切成语义完整的块，核心参数：</p>
+      <ul><li><strong>大小：</strong>256-1024 tokens/块（按场景调整）</li><li><strong>重叠：</strong>15-20% token重叠，避免断句丢信息</li><li><strong>策略：</strong>语义分割 > 固定长度分割</li></ul>
+      <p>好的Chunk策略能提升检索准确率30%以上。</p>
+    </div>
+    <div class="dbox"><h4>向量化(Embedding)</h4>
+      <p>将文本转为数学向量（浮点数数组）</p>
+      <ul><li>🌐 <strong>海外：</strong>OpenAI text-embedding-3-small/large</li><li>🇨🇳 <strong>中文最佳：</strong>BGE-M3 (BAAI) / m3e</li><li>💰 <strong>免费：</strong>Qwen-Embedding-0.6B / text2vec-large-chinese</li></ul>
+      <p>中文场景推荐BGE-M3，免费开源，效果接近OpenAI。</p>
+    </div>
+    <div class="dbox"><h4>向量数据库</h4>
+      <ul><li>🚀 <strong>Chroma</strong>：轻量嵌入式，0配置，适合验证/个人</li><li>🏭 <strong>Milvus</strong>：生产级，十亿级向量，适合企业</li><li>☁️ <strong>Pinecone</strong>：托管SaaS，免运维，按量付费</li><li>📦 <strong>FAISS</strong>：Meta开源，内存索引，最快检索</li><li>🔨 <strong>Qdrant</strong>：Rust实现，性能强劲</li></ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🛠️ 主流RAG工具选型</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>工具</th><th>特点</th><th>适合人群</th><th>部署方式</th><th>费用</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dify</strong></td><td>可视化RAG搭建，拖拽式工作流</td><td>非技术人员/技术团队</td><td>Docker自部署</td><td>免费</td></tr>
+        <tr><td><strong>LangChain</strong></td><td>模块化框架，Python生态最全</td><td>开发者</td><td>代码集成</td><td>免费</td></tr>
+        <tr><td><strong>LlamaIndex</strong></td><td>专注RAG，数据连接器最丰富</td><td>开发者</td><td>代码集成</td><td>免费</td></tr>
+        <tr><td><strong>AnythingLLM</strong></td><td>本地TUI，数据不出机</td><td>个人/企业内网</td><td>Docker/桌面端</td><td>免费</td></tr>
+        <tr><td><strong>Coze</strong></td><td>字节出品，零代码Bot搭建</td><td>非技术人员</td><td>SaaS</td><td>免费/付费</td></tr>
+        <tr><td><strong>FastGPT</strong></td><td>国产开源，知识库管理完善</td><td>技术团队</td><td>Docker自部署</td><td>免费</td></tr>
+        <tr><td><strong>RAGFlow</strong></td><td>文档解析质量极高，PDF支持好</td><td>文档密集型</td><td>Docker自部署</td><td>免费</td></tr>
+        <tr><td><strong>Haystack</strong></td><td>生产级RAG，NLP全栈</td><td>企业团队</td><td>Docker/Python</td><td>免费</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">⚡ Dify+DeepSeek 快速搭建</div>
+  <div class="dbox">
+    <p>适合场景：企业内部知识库、客服Bot、培训资料问答、行业Chat网站</p>
+    <div class="steps">
+      <div class="step"><div class="step-body"><strong>Docker部署Dify</strong><span class="code" style="display:block;margin-top:4px">git clone https://github.com/langgenius/dify.git<br>cd dify/docker && docker-compose up -d</span>访问 http://localhost:3001，注册管理员账号</div></div>
+      <div class="step"><div class="step-body"><strong>添加DeepSeek API Key</strong>在Dify后台「系统设置-模型供应商」添加DeepSeek的API Key及Embedding模型（推荐 BGE-M3 或 text-embedding-3-small）</div></div>
+      <div class="step"><div class="step-body"><strong>创建知识库</strong>「知识库-新建」→ 上传PDF/Word/Markdown等文件 → Dify自动解析+分块+向量化。支持批量上传，单库可达百万级文档。</div></div>
+      <div class="step"><div class="step-body"><strong>创建AI应用</strong>「工作室-新建」→ 选择"聊天助手" → 关联知识库 → 调整系统提示词 → 发布。支持对话/分类/流式输出多种模式。</div></div>
+      <div class="step"><div class="step-body"><strong>嵌入到网站/企微/钉钉</strong>Dify提供：内嵌iframe代码、公开API接口、Webhook集成。5分钟接入企业微信/钉钉/飞书/网站。</div></div>
+    </div>
+    <div class="note">💰 <strong>成本估算：</strong>Dify免费自部署(¥30/月服务器) + DeepSeek API(¥1-5/天中小用量) + 域名(¥50/年) = 每天约¥1-5。企业级方案（Milvus+多节点）约¥500-2000/月。</div>
+    <div class="tip">🎯 <strong>行业Chat应用方案：</strong>前端React/Vue → API网关(jsdelivr) → 后端FastAPI → Dify API → 向量库Milvus + DeepSeek/GPT。下次上传新文档即时生效，无需重新训练。权限控制实现多租户（不同客户不同知识库）。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">📋 RAG高级优化技巧</div>
+  <div class="grid-2">
+    <div class="dbox"><h4>🔍 混合检索（提升召回率30%+）</h4>
+      <p>向量搜索 + 关键词搜索（BM25）双路并行，结果重排序。单独向量搜索可能丢失精确匹配的结果，混合模式可以互补。推荐使用Qdrant/Elasticsearch做混合检索。</p>
+    </div>
+    <div class="dbox"><h4>🔄 重排序(Rerank)</h4>
+      <p>初检索Top-50→高级语义Rerank→取Top-5。Cross-encoder Rerank比向量搜索准确率高10-15%，只对少量候选重排，速度可接受。推荐BGE-Reranker-v2或Cohere Rerank。</p>
+    </div>
+    <div class="dbox"><h4>📌 引用溯源</h4>
+      <p>在答案中标注知识来源。用户点击标注直接跳转原文。大幅提升可信度，企业客户特别看重这一点。Dify/RAGFlow内置此功能。</p>
+    </div>
+    <div class="dbox"><h4>🔄 增量更新</h4>
+      <p>上传新文档 → 自动解析/分块/向量化 → 5秒内生效，无需重建索引。支持定时同步数据源（如数据库/网盘）。Dify的"定时同步"功能可以自动检查数据源更新。</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox"><h3>📌 不训练大模型 vs 训练大模型</h3>
+    <div class="cmp-row"><div class="cmp-label">对比维度</div><div style="color:var(--green);font-weight:600">RAG（推荐）</div><div style="color:var(--muted)">模型微调</div></div>
+    <div class="cmp-row"><div class="cmp-label">成本</div><div>¥0-500/月</div><div>¥数万-百万</div></div>
+    <div class="cmp-row"><div class="cmp-label">更新速度</div><div>上传文档即时</div><div>重新训练数天-数周</div></div>
+    <div class="cmp-row"><div class="cmp-label">技术门槛</div><div>Dify拖拽式</div><div>需要ML工程师</div></div>
+    <div class="cmp-row"><div class="cmp-label">数据安全</div><div>可控</div><div>训练数据需外传</div></div>
+    <div class="cmp-row"><div class="cmp-label">效果控制</div><div>可精准查证来源</div><div>答案可能"幻觉"</div></div>
+    <div class="note" style="margin-top:12px">💡 <strong>什么时候需要微调？</strong>① 你的输出格式要求极其固定（比如一直输出JSON）；② 需要大量领域术语的表述风格迁移；③ 模型的输出质量需要从70分提升到85分以上。除此之外，RAG都是更好的选择。</div>
+  </div>
+</div>
+<footer><p>AI大模型全景培训手册 · 知识库RAG · 2026年5月版</p><p><a href="manual.html">← 返回培训首页</a> | <a href="coding.html">← 编码工具</a> | <a href="finetune.html">下一章：模型部署 →</a></p></footer>
+</body>
+</html>

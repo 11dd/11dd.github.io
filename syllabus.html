@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>培训大纲·架构 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>📋 培训大纲 · 应用架构</h1>
+  <p>内训排课 + 五层架构全景——组织者与业务/开发共用</p>
+  <div class="badges"><span class="badge">12课大纲</span><span class="badge">五层架构</span><span class="badge">选型决策树</span></div>
+</div>
+<div class="page-wrap page-cols">
+  <div class="sticky-toc">
+    <h5>本章目录</h5>
+    <a href="#syllabus">12课大纲</a>
+    <a href="#roles">按角色压缩</a>
+    <a href="#quiz">课后自测</a>
+    <a href="#architecture">五层架构</a>
+    <a href="#flow">数据流</a>
+    <a href="#decision">选型决策</a>
+    <a href="#patterns">落地模式</a>
+  </div>
+  <div class="page-main">
+
+  <div class="sec-title" id="syllabus">🗓️ 标准 12 课大纲（通用版）</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>课次</th><th>主题</th><th>页面</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>AI 是什么、能做什么</td><td><a href="history.html">发展历史</a> + <a href="manual.html#glossary">术语表</a></td><td>建立共同语言</td></tr>
+        <tr><td>2</td><td>应用架构总览</td><td><a href="#architecture">本章架构</a></td><td>理解端到端链路</td></tr>
+        <tr><td>3</td><td>模型选型与 API</td><td><a href="models.html">模型</a> + <a href="api-integration.html">API·网关</a></td><td>会看官网能力说明</td></tr>
+        <tr><td>4</td><td>提示词与工作流</td><td><a href="prompt.html">提示词</a></td><td>能写可复用 Prompt</td></tr>
+        <tr><td>5</td><td>业务落地与 ROI</td><td><a href="playbook-business.html">业务手册</a></td><td>会填场景立项表</td></tr>
+        <tr><td>6</td><td>行业案例</td><td><a href="industries.html">行业应用</a></td><td>找到本行业参考</td></tr>
+        <tr><td>7</td><td>RAG 知识库</td><td><a href="rag.html">RAG</a></td><td>理解检索增强流程</td></tr>
+        <tr><td>8</td><td>Agent 与 MCP</td><td><a href="agents.html">Agent</a> + <a href="mcp.html">MCP</a></td><td>区分聊天与自动化</td></tr>
+        <tr><td>9</td><td>开发与编码辅助</td><td><a href="coding.html">编码工具</a></td><td>选型 IDE/CLI 工具</td></tr>
+        <tr><td>10</td><td>评测与上线质量</td><td><a href="benchmarks.html#benchmarks">评测</a> + <a href="benchmarks.html#eval-ops">生产</a></td><td>不信单一分数</td></tr>
+        <tr><td>11</td><td>安全合规</td><td><a href="benchmarks.html#safety">合规</a> + <a href="benchmarks.html#careers">职业</a></td><td>数据分级与审核</td></tr>
+        <tr><td>12</td><td>复盘与路线图</td><td><a href="future.html">趋势</a> + 内部案例分享</td><td>制定团队 90 天计划</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title" id="roles">🎯 按角色压缩版</div>
+  <div class="grid-3">
+    <div class="card card--accent-green"><div class="card-name">业务轨（约 6h）</div><div class="card-desc">架构(1h) → 业务手册(1.5h) → 提示词(1h) → 行业(1.5h) → 合规(1h)</div></div>
+    <div class="card card--accent-blue"><div class="card-name">开发轨（约 12h）</div><div class="card-desc">架构 → API·网关 → RAG → Agent/MCP → 部署 → 生产评测</div></div>
+    <div class="card card--accent-orange"><div class="card-name">管理者轨（约 3h）</div><div class="card-desc">架构 → 业务手册 ROI → 合规 → 趋势</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title" id="quiz">✅ 课后自测（示例）</div>
+  <div class="dbox" id="quiz1">
+    <p><strong>Q1：</strong>企业知识库问答，优先应选？</p>
+    <button type="button" class="quiz-opt" data-q="1" data-a="wrong">全参微调 70B 模型</button>
+    <button type="button" class="quiz-opt" data-q="1" data-a="right">RAG + 公有云或私有化 API</button>
+    <button type="button" class="quiz-opt" data-q="1" data-a="wrong">仅提高 Prompt 温度</button>
+    <p id="quiz1-msg" style="margin-top:8px;font-size:13px;color:var(--muted)"></p>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title" id="architecture">🏗️ 五层参考架构</div>
+  <div class="data-disclaimer"><strong>培训说明：</strong>下图描述行业通用架构模式。模型能力与定价以各厂商<a href="https://platform.openai.com/docs" target="_blank">官方文档</a>为准。</div>
+  <div class="dbox">
+    <div class="layer-stack">
+      <div class="layer layer-l5"><strong>L5 · 体验层</strong><p>Web/App、企微/钉钉 Bot、IDE 插件、运营后台</p></div>
+      <div class="layer layer-l4"><strong>L4 · 应用编排层</strong><p>会话、权限、Prompt 模板、工作流（Dify / LangGraph / 自研）</p></div>
+      <div class="layer layer-l3"><strong>L3 · 能力增强层</strong><p>RAG · Tools/MCP · Agent · 可选微调</p></div>
+      <div class="layer layer-l2"><strong>L2 · 模型接入层</strong><p>OpenAI 兼容 API、<a href="api-integration.html#gateway">网关</a>、路由、流式、计费</p></div>
+      <div class="layer layer-l1"><strong>L1 · 基础设施层</strong><p>云 API / <a href="finetune.html">私有化推理</a> · 向量库 · <a href="infra.html">算力</a></p></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title" id="flow">🔄 典型数据流</div>
+  <div class="dbox">
+    <ol>
+      <li>用户提问 → 网关鉴权、限流</li>
+      <li>（可选）RAG：检索文档块 → 拼入 Prompt</li>
+      <li>（可选）Agent：模型调用工具（API/数据库）</li>
+      <li>调用大模型 → 流式返回</li>
+      <li>内容安全、脱敏、<a href="benchmarks.html#eval-ops">观测落库</a></li>
+    </ol>
+    <div class="tip">💡 多数企业场景：<strong>云 API + RAG</strong> 即可 MVP；全参微调多为后期优化。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title" id="decision">🌳 技术选型决策树</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-name">要引用内部文档？</div><div class="card-desc">是 → <a href="rag.html">RAG</a>；否 → Prompt + API。</div></div>
+    <div class="card"><div class="card-name">要操作外部系统？</div><div class="card-desc">是 → <a href="agents.html">Agent</a> + <a href="mcp.html">MCP</a>，权限最小化。</div></div>
+    <div class="card"><div class="card-name">要固定话术/格式？</div><div class="card-desc">先 Prompt；不够再 <a href="finetune.html">LoRA</a>。</div></div>
+    <div class="card"><div class="card-name">数据能否出网？</div><div class="card-desc">不能 → 私有化 + 国产/开源模型。</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title" id="patterns">📦 三种落地模式</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>模式</th><th>适用</th><th>组件</th><th>复杂度</th></tr></thead>
+      <tbody>
+        <tr><td>对话助手</td><td>客服、问答</td><td>Dify + 向量库</td><td>低</td></tr>
+        <tr><td>知识 Copilot</td><td>法务/研发文档</td><td>RAG + 溯源 + 分库权限</td><td>中</td></tr>
+        <tr><td>自动化 Agent</td><td>跨系统流程</td><td>LangGraph / n8n + MCP</td><td>高</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.quiz-opt').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const box=btn.closest('.dbox');
+    const msg=box.querySelector('[id$="-msg"]');
+    box.querySelectorAll('.quiz-opt').forEach(b=>{b.classList.remove('correct','wrong');});
+    btn.classList.add(btn.dataset.a==='right'?'correct':'wrong');
+    if(msg) msg.textContent=btn.dataset.a==='right'?'✓ 正确：多数场景 RAG 即可快速验证。':'✗ 再想想：微调成本高，且文档更新慢。';
+  });
+});
+</script>
+<footer><p>AI大模型全景培训手册 · 培训大纲·架构 · 2026年5月版</p></footer>
+</body>
+</html>

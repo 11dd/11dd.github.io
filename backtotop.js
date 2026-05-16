@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('button');b.id='back-to-top';b.innerHTML='&#8679;';b.title='返回顶部';document.body.appendChild(b);window.addEventListener('scroll',function(){window.scrollY>400?b.classList.add('show'):b.classList.remove('show')});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})});

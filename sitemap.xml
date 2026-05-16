@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>index.html</loc></url>
+  <url><loc>manual.html</loc></url>
+  <url><loc>syllabus.html</loc></url>
+  <url><loc>history.html</loc></url>
+  <url><loc>models.html</loc></url>
+  <url><loc>infra.html</loc></url>
+  <url><loc>playbook-business.html</loc></url>
+  <url><loc>prompt.html</loc></url>
+  <url><loc>coding.html</loc></url>
+  <url><loc>api-integration.html</loc></url>
+  <url><loc>rag.html</loc></url>
+  <url><loc>finetune.html</loc></url>
+  <url><loc>industries.html</loc></url>
+  <url><loc>agents.html</loc></url>
+  <url><loc>mcp.html</loc></url>
+  <url><loc>media.html</loc></url>
+  <url><loc>benchmarks.html</loc></url>
+  <url><loc>future.html</loc></url>
+  <url><loc>startup.html</loc></url>
+</urlset>

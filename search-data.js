@@ -1,0 +1,22 @@
+const SEARCH_INDEX = [
+  { t: 'AI工具导航首页', u: 'index.html', k: '导航 工具 分区 链接 ChatGPT DeepSeek 豆包 翻译 营销 会议 3D GPU CRM 筛选 首页' },
+  { t: '培训手册首页', u: 'manual.html', k: '培训 教程 首页 术语 glossary 模块 全景' },
+  { t: '培训大纲·架构', u: 'syllabus.html', k: '课时 课程 架构 五层 决策树' },
+  { t: '术语表', u: 'manual.html#glossary', k: 'Token Embedding RLHF MoE glossary 手册' },
+  { t: '发展历史', u: 'history.html', k: 'Transformer GPT 时间线' },
+  { t: '全部模型', u: 'models.html', k: '选型 API Claude GPT DeepSeek' },
+  { t: 'AI硬件', u: 'infra.html', k: 'GPU H100 算力 昇腾' },
+  { t: '业务培训手册', u: 'playbook-business.html', k: 'ROI 合规 非技术 业务' },
+  { t: '提示词工程', u: 'prompt.html', k: 'Prompt CoT 模板' },
+  { t: '编码工具', u: 'coding.html', k: 'Cursor Copilot Claude Code 订阅 价格 ChatGPT Plus' },
+  { t: 'API·网关', u: 'api-integration.html', k: 'OpenAI 流式 One-API LiteLLM 中转站' },
+  { t: '知识库RAG', u: 'rag.html', k: 'Dify 向量 知识库' },
+  { t: '模型部署', u: 'finetune.html', k: 'LoRA Ollama vLLM' },
+  { t: '行业应用', u: 'industries.html', k: '医疗 金融 教育' },
+  { t: 'Agent框架', u: 'agents.html', k: 'LangChain CrewAI Dify' },
+  { t: 'MCP协议', u: 'mcp.html', k: 'Model Context Protocol Host Server Tools Cursor Claude' },
+  { t: '图像视频', u: 'media.html', k: 'Midjourney Sora' },
+  { t: '评测·生产·合规·职业', u: 'benchmarks.html', k: 'MMLU SWE-bench Langfuse 备案 认证 薪资' },
+  { t: '未来趋势', u: 'future.html', k: 'AGI Agent' },
+  { t: '创业·实操', u: 'startup.html', k: 'SaaS 变现 Sub2API 开发者' }
+];

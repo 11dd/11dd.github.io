@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>提示词工程 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>✍️ 提示词工程实战指南</h1>
+  <p>不懂提示词，再好的模型也用不好——从入门到精通的全套方法论</p>
+  <div class="badges"><span class="badge">基础技巧</span><span class="badge">高级策略</span><span class="badge">结构化输出</span><span class="badge">角色设定</span></div>
+</div>
+<div class="page-wrap">
+  <div class="page-lead"><strong>本章定位：</strong>面向业务与开发混训；下方模板均可一键复制。工程化落地见 <a href="api-integration.html">API·网关</a>、<a href="agents.html">Agent</a>。</div>
+  <div class="sec-title">🎯 提示词的核心原则</div>
+  <div class="sec-sub">优质提示词的5条黄金法则</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-name">① 清晰具体</div><div class="card-desc">不要说"帮我写点什么"，要说"帮我写一封500字的商务邮件，向客户介绍我们的AI产品，语气专业但友好"。</div></div>
+    <div class="card"><div class="card-name">② 设定角色</div><div class="card-desc">给AI一个身份会大幅提升输出质量。"你是一名资深Python工程师，有10年后端开发经验"比直接提问的效果好得多。</div></div>
+    <div class="card"><div class="card-name">③ 提供示例</div><div class="card-desc">给1-3个输入输出示例(Few-shot)，AI能准确理解你期望的回答格式和风格。示例越多越精准。</div></div>
+    <div class="card"><div class="card-name">④ 步骤拆分</div><div class="card-desc">把复杂任务分解成步骤。用Chain of Thought即"请一步步思考"可大幅提升数学/逻辑推理任务准确率。</div></div>
+    <div class="card"><div class="card-name">⑤ 输出规范</div><div class="card-desc">指定输出格式：JSON/表格/列表/Markdown/字数限制。用"请以JSON格式返回"确保结构化输出。</div></div>
+  </div>
+  <hr class="divider">
+  <div class="sec-title">📐 提示词公式模板</div>
+  <div class="sec-sub">拿来即用的实战公式</div>
+  <div class="dbox">
+    <h4>基础公式</h4>
+    <div class="code"><span class="ck">角色</span> + <span class="cs">任务</span> + <span class="ck">背景</span> + <span class="cs">格式</span> + <span class="ck">约束</span></div>
+    <p style="margin-top:8px"><strong>示例：</strong>「你是一名资深Python工程师（角色），请帮我优化这段代码的执行性能（任务），这是一个电商商品查询接口，每次请求耗时>2秒（背景），请给出优化后的代码和解释（格式），不要改变原有的API签名（约束）」</p>
+    <h4 style="margin-top:20px">高级模板：思维链(CoT)</h4>
+    <div class="code">问题：XXXXX<br>请<strong style="color:var(--green)">一步步分析</strong>：<br>1. 首先理解问题要求<br>2. 列出已知信息<br>3. 逐步推导<br>4. 得出最终结论并验证</div>
+    <h4 style="margin-top:20px">系统提示模板(用于AI应用开发)</h4>
+    <div class="code">你是一名{角色}。你的核心能力是{能力}。<br>回答规则：<br>- 始终保持{语气}语气<br>- 输出格式为{格式}<br>- 如果用户问题超出范围，请回复{兜底话术}<br>- 每轮对话长度不超过{字数}字</div>
+  </div>
+  <hr class="divider">
+  <div class="sec-title">⚡ 6大高级提示技巧</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-name">🧩 思维链(Chain-of-Thought)</div><div class="card-desc">让模型在给出答案前先逐步推理。在数学应用题、逻辑推理、多步决策中，CoT可提升30-50%准确率。只需在提示中加入"请一步步思考"或"Let's think step by step"。</div></div>
+    <div class="card"><div class="card-name">📚 少样本学习(Few-Shot)</div><div class="card-desc">在提示中给3-5个输入输出示例，模型会模仿示例模式作答。示例越多越精准。适合翻译风格固定、格式统一、代码生成等场景。</div></div>
+    <div class="card"><div class="card-name">🔄 迭代优化(Iterative Refinement)</div><div class="card-desc">不是一次到位，而是多轮对话逐步优化。第一轮：生成初版→反馈修改意见→第二轮优化。人类的优秀写作也是多次修改，AI同理。</div></div>
+    <div class="card"><div class="card-name">🌲 Tree of Thoughts (ToT)</div><div class="card-desc">CoT的升级版，让模型在多个思考分支中探索，自行评估每条路径的正确性。适合创造性任务和复杂规划。把问题拆解为多个可能性树杈。</div></div>
+    <div class="card"><div class="card-name">🛡️ 自我反思(Self-Critique)</div><div class="card-desc">让模型审视自己的输出是否正确。提示："请检查你上面的回答，指出可能存在的错误，然后重新给出修正版"。能有效减少幻觉。</div></div>
+    <div class="card"><div class="card-name">📋 结构化输出</div><div class="card-desc">要求模型以指定格式输出：JSON Schema、XML标签、Markdown表格。用于编程接口集成。"请输出JSON格式，包含name, price, description字段"。</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title" id="copy-templates">📋 可复制提示词模板</div>
+  <div class="sec-sub">点击「复制」粘贴到 ChatGPT / Claude / Cursor</div>
+
+  <div class="copy-prompt-grid">
+    <div class="dbox">
+      <h4>系统提示（客服 / 知识库）</h4>
+      <div class="copy-block"><pre class="copy-block-body">你是【公司名】的 AI 客服助手。
+
+能力边界：仅回答【产品/政策】范围内问题；不确定时说「我不确定」并建议转人工。
+输出：先结论后分点；禁止编造价格、合同、医疗/法律结论。</pre></div>
+    </div>
+    <div class="dbox">
+      <h4>结构化 JSON</h4>
+      <div class="copy-block"><pre class="copy-block-body">只输出 JSON，不要 markdown 代码块。
+{"intent":"咨询|投诉|购买","summary":"一句话","urgency":"低|中|高"}
+用户输入：{{消息}}</pre></div>
+    </div>
+    <div class="dbox">
+      <h4>思维链 CoT</h4>
+      <div class="copy-block"><pre class="copy-block-body">任务：{{问题}}
+步骤：1重述约束 2列已知未知 3分步推理 4结论+置信度 5缺信息则列3个追问</pre></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title" id="prompt-compare">⚖️ 好坏提示词对照</div>
+  <div class="prompt-compare">
+    <div class="card card--bad"><div class="card-name">❌ 模糊</div><div class="copy-block"><pre class="copy-block-body">帮我写点关于 AI 的东西，好一点。</pre></div></div>
+    <div class="card card--good"><div class="card-name">✅ 清晰</div><div class="copy-block"><pre class="copy-block-body">写 400 字邮件向非技术同事解释 RAG：1 个类比 + 结尾指向培训章节。</pre></div></div>
+    <div class="card card--bad"><div class="card-name">❌ 多任务</div><div class="copy-block"><pre class="copy-block-body">比模型、写代码、算 ROI、翻译。</pre></div></div>
+    <div class="card card--good"><div class="card-name">✅ 单任务</div><div class="copy-block"><pre class="copy-block-body">仅用表格对比三模型在中文客服场景：成本/延迟/幻觉/工具调用。</pre></div></div>
+  </div>
+  <hr class="divider">
+  <div class="sec-title">🚫 提示词常见错误</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-name" style="color:var(--red)">模糊不清</div><div class="card-desc">❌ "给我写好一点的" ✅ "请改写这段话，语气更正式，用词更专业，保留核心观点"</div></div>
+    <div class="card"><div class="card-name" style="color:var(--red)">给模型过多自由</div><div class="card-desc">❌ "介绍一下量子计算" ✅ "请用500字向高中生介绍量子计算，包含：基本原理、当前进展、实际应用"</div></div>
+    <div class="card"><div class="card-name" style="color:var(--red)">忽略格式约束</div><div class="card-desc">❌ 让模型自由发挥格式 ✅ 明确要求Markdown/JSON/表格/列表/字数</div></div>
+    <div class="card"><div class="card-name" style="color:var(--red)">一次性多任务</div><div class="card-desc">❌ 一个提示里问5个互不相关的问题 ✅ 拆分为多个独立对话或分步提问</div></div>
+  </div>
+  <hr class="divider">
+  <div class="dbox"><h3>📌 Harness Engineering——提示词的进化方向</h3><p>2026年，OpenAI提出了"Harness Engineering"的概念。提示词工程正在从手动编写提示词，进化为使用系统工具链（RAG、Agent工具调用、记忆管理、护栏Guardrails等）来"驾驭"大模型。核心思想：不是写好一句提示词就完事，而是设计一整套让模型稳定发挥的工作流。</p><div class="tip">💡 <strong>对开发者：</strong>未来提示词工程师的工作不是"写提示"，而是"设计工具链"——定义RAG召回策略、Agent工具集、记忆窗口管理、Failover降级方案。</div></div>
+
+  <hr class="divider">
+  <div class="sec-title">🎬 8大场景化提示词模板</div>
+  <div class="sec-sub">拿来即用，覆盖高频使用场景</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-name">💻 编程辅助</div><div class="code" style="font-size:11px;margin-top:8px;line-height:1.5">你是一名资深{语言}工程师。<br>任务：{具体任务}<br>技术栈：{框架/版本}<br>要求：{性能/安全/可维护性}<br>请输出：完整代码 + 关键注释 + 复杂度分析</div></div>
+    <div class="card"><div class="card-name">✍️ 内容创作</div><div class="code" style="font-size:11px;margin-top:8px;line-height:1.5">你是一名{领域}写手，风格{正式/幽默/煽情}。<br>主题：{主题}<br>目标读者：{画像}<br>字数：{字数}<br>结构：开头吸引→正文展开→总结升华<br>请输出{文章/文案/脚本}，并配3个备选标题</div></div>
+    <div class="card"><div class="card-name">📊 数据分析</div><div class="code" style="font-size:11px;margin-top:8px;line-height:1.5">数据：{粘贴数据/上传文件}<br>分析目标：{趋势/异常/对比/预测}<br>请：1）数据清洗检查 2）关键指标计算<br>3）可视化建议 4）业务洞察与建议<br>输出格式：Markdown表格 + 分析结论</div></div>
+    <div class="card"><div class="card-name">🌐 翻译润色</div><div class="code" style="font-size:11px;margin-top:8px;line-height:1.5">你是一名中英翻译专家。<br>请将以下{源语言}翻译为{目标语言}<br>风格：{正式/口语/学术/商务}<br>注意事项：{术语/文化适配}<br>输出：逐段对照 + 最终译文 + 译注</div></div>
+    <div class="card"><div class="card-name">🤝 客服咨询</div><div class="code" style="font-size:11px;margin-top:8px;line-height:1.5">你作为{公司}客服专员。<br>客户问题：{问题}<br>政策依据：{内部文件}<br>回复原则：共情→确认→解答→跟进<br>请输出回复并标注需转人工的风险点</div></div>
+    <div class="card"><div class="card-name">🎓 学习辅导</div><div class="code" style="font-size:11px;margin-top:8px;line-height:1.5">你是一名{学科}导师。<br>学生水平：{初学者/进阶者}<br>知识点：{概念/公式/定理}<br>教学方式：苏格拉底式提问引导<br>不要直接给答案，先提问让学习者思考</div></div>
+    <div class="card"><div class="card-name">💡 创意头脑风暴</div><div class="code" style="font-size:11px;margin-top:8px;line-height:1.5">我们需要为{项目}做创意发散。<br>约束条件：{预算/时间/资源}<br>请输出：<br>1. 10个初步想法(不设限)<br>2. 针对每个想法的可行性评估<br>3. 筛选Top 3 + 行动建议</div></div>
+    <div class="card"><div class="card-name">📝 商业决策</div><div class="code" style="font-size:11px;margin-top:8px;line-height:1.5">我们需要做{决策主题}。<br>选项A：{描述} B：{描述} C：{描述}<br>评估维度：成本/风险/ROI/时间/资源<br>请用决策矩阵打分，推荐最优方案<br>并给出"如果失败"的回退方案</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🔄 不同模型的提示词差异</div>
+  <div class="sec-sub">GPT、Claude、DeepSeek的"脾气"不一样——用对方式效果翻倍</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>模型</th><th>风格</th><th>最优提示方式</th><th>注意</th></tr></thead>
+      <tbody>
+        <tr><td><strong>GPT-4o</strong></td><td>全能型，适应性强</td><td>结构化提示+角色设定效果最好</td><td>对多轮上下文敏感，复杂指令需拆解</td></tr>
+        <tr><td><strong>Claude 3.7</strong></td><td>思考型，善于分析</td><td>XML标签分隔(prompt→cot→format)最佳</td><td>擅长编程和长文档，对格式要求敏感</td></tr>
+        <tr><td><strong>DeepSeek</strong></td><td>简洁型，性价比高</td><td>清晰任务描述+少样本示例效果最佳</td><td>思维链模式需主动触发，默认简单回复</td></tr>
+        <tr><td><strong>Gemini</strong></td><td>多模态，Google生态</td><td>链接+图片+文本混合输入最强</td><td>多模态理解强，但文本深度略逊Claude</td></tr>
+        <tr><td><strong>Qwen</strong></td><td>中文优化，听话</td><td>中文提示效果最好，Agent调用能力强</td><td>英文能力弱于GPT，但中文+代码出色</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">💡 <strong>通用建议：</strong>不确定模型风格时，用"角色+任务+格式+约束"四要素模板。这个公式在所有模型中都能稳定输出高质量结果。</div>
+</div>
+<footer><p>AI大模型全景培训手册 · 提示词工程 · 2026年5月版</p><p><a href="manual.html">← 返回培训首页</a> | <a href="infra.html">← AI硬件</a> | <a href="coding.html">下一章：编码工具 →</a></p></footer>
+</body>
+</html>

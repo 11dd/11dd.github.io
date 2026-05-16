@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>业务培训手册 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>💼 业务培训手册（非技术岗）</h1>
+  <p>2～4 小时速成：能做什么、如何立项、如何控风险</p>
+  <div class="badges"><span class="badge">场景矩阵</span><span class="badge">ROI粗算</span><span class="badge">合规清单</span></div>
+</div>
+<div class="page-wrap page-cols">
+  <div class="sticky-toc">
+    <h5>目录</h5>
+    <a href="#can">能与不能</a>
+    <a href="#matrix">场景矩阵</a>
+    <a href="#roi">ROI粗算</a>
+    <a href="#checklist">立项清单</a>
+    <a href="#roles">岗位示例</a>
+  </div>
+  <div class="page-main">
+    <div class="sec-title" id="can">✅ AI 能帮什么 / 不能指望什么</div>
+    <div class="grid-2">
+      <div class="card card--border-green"><div class="card-name">适合</div><ul class="card-list"><li>起草文案、邮件、方案初稿</li><li>总结长文档、会议纪要</li><li>客服/销售话术辅助</li><li>数据分析解读（需核对）</li></ul></div>
+      <div class="card card--border-red"><div class="card-name">不适合单独依赖</div><ul class="card-list"><li>未经验证的法律/医疗结论</li><li>实时精确财务数据</li><li>未授权的个人隐私处理</li><li>无人工复核的关键决策</li></ul></div>
+    </div>
+    <div class="warn">⚠️ 模型会<strong>幻觉</strong>：输出必须有人工抽检，尤其是对外客户与合规场景。详见 <a href="benchmarks.html#safety">安全法规</a>。</div>
+
+    <hr class="divider">
+    <div class="sec-title" id="matrix">📊 场景选型矩阵</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>业务需求</th><th>推荐路径</th><th>周期</th><th>参考章节</th></tr></thead>
+        <tbody>
+          <tr><td>内部制度/产品问答</td><td>云 API + RAG 知识库</td><td>2～6 周</td><td><a href="rag.html">RAG</a></td></tr>
+          <tr><td>营销/运营内容生成</td><td>Prompt 模板 + 人工审核</td><td>1～2 周</td><td><a href="prompt.html">提示词</a></td></tr>
+          <tr><td>跨系统自动办单</td><td>Agent + 权限隔离</td><td>1～3 月</td><td><a href="agents.html">Agent</a></td></tr>
+          <tr><td>数据不能出公司</td><td>私有化部署 + 国产/开源模型</td><td>1～3 月</td><td><a href="finetune.html">部署</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+    <div class="sec-title" id="roi">💰 ROI 粗算模板</div>
+    <div class="dbox">
+      <p><strong>节省人力（月）≈</strong> 处理条数 × 单条人工耗时(分钟) × 替代率 ÷ 60 × 人力时薪</p>
+      <p><strong>月成本 ≈</strong> API Token 费 + 平台/服务器 + 审核人力</p>
+      <p>替代率建议试点期按 30%～50% 估算，避免过度承诺。API 单价以 <a href="models.html">厂商官网</a> 为准。</p>
+    </div>
+
+    <hr class="divider">
+    <div class="sec-title" id="checklist">📋 立项前 8 项检查</div>
+    <div class="dbox"><ol>
+      <li>是否有明确业务 KPI（时效、转化率、成本）？</li>
+      <li>训练/推理数据是否涉密？能否出网？</li>
+      <li>是否需要生成式 AI 备案或算法说明？</li>
+      <li>输出是否需人工复核与留痕？</li>
+      <li>是否接入内容安全审核？</li>
+      <li>选用模型是否有官方 SLA 与退出方案？</li>
+      <li>试点范围与回滚方案是否定义？</li>
+      <li>谁对最终对外内容负责？</li>
+    </ol></div>
+
+    <hr class="divider">
+    <div class="sec-title" id="roles">👥 岗位工作流示例</div>
+    <div class="grid-2">
+      <div class="card"><div class="card-name">客服</div><div class="card-desc">知识库 RAG 答常见问题 → 复杂单转人工；禁止直接承诺赔偿。</div></div>
+      <div class="card"><div class="card-name">运营</div><div class="card-desc">Prompt 生成多版本文案 → 品牌审核 → A/B 测试。</div></div>
+      <div class="card"><div class="card-name">销售</div><div class="card-desc">客户资料摘要 + 方案提纲；报价以 CRM 为准。</div></div>
+      <div class="card"><div class="card-name">管理者</div><div class="card-desc">看 <a href="syllabus.html#architecture">架构一页纸</a> + 本手册 ROI，批准试点预算。</div></div>
+    </div>
+  </div>
+</div>
+<footer><p>AI大模型全景培训手册 · 业务培训 · 2026年5月版</p></footer>
+</body>
+</html>

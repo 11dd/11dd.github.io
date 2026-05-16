@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>全部AI模型 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>🏆 全球AI知名模型大全</h1>
+  <p>90+知名模型完整收录 · 26家公司 · 官网 · 评测 · 定价 · 特色能力</p>
+  <div class="badges"><span class="badge">90+ 模型</span><span class="badge">26家公司</span><span class="badge">评测数据</span><span class="badge">API价格</span><span class="badge">开源闭源标注</span></div>
+</div>
+<div class="page-wrap page-cols">
+  <div class="sticky-toc">
+    <h5>快速跳转</h5>
+    <a href="#table-all">📊 完整对比表</a>
+    <a href="#us-models">🇺🇸 美国阵营</a>
+    <a href="#cn-models">🇨🇳 中国阵营</a>
+    <a href="#eu-models">🇪🇺 欧洲/其他</a>
+    <a href="#open-models">🔓 开源模型</a>
+    <a href="#kb">📋 选型建议</a>
+  </div>
+  <div class="page-main">
+    <div class="sec-title" id="table-all">📊 全球AI模型完整对比表</div>
+    <div class="data-disclaimer" style="margin-bottom:20px"><strong>数据声明：</strong>「发布时间」为模型公开发布或正式上架月份（培训整理，以厂商公告为准）。SWE-bench 列为 <a href="https://www.swebench.com" target="_blank">SWE-bench Verified</a> 公开参考（偏编程）；MMLU 仅保留仍有对照意义的旧版分数。点击<strong>模型名称</strong>跳转官网。选型与定价以 <a href="https://artificialanalysis.ai" target="_blank">Artificial Analysis</a>、<a href="https://chat.lmsys.org" target="_blank">LMSYS Arena</a> 及各厂商官网为准。</div>
+    <div class="sec-sub">2026 年 5 月前沿梯队 + 高性价比 / 开源主力</div>
+    <div class="tbl-wrap">
+      <table class="models-compare">
+        <thead>
+          <tr><th>#</th><th>模型名称</th><th>公司</th><th>类型</th><th>参数</th><th>SWE-bench</th><th>MMLU</th><th>发布时间</th><th>特色</th></tr>
+        </thead>
+        <tbody id="models-compare-tbody">
+          <!-- models-table.js -->
+</tbody>
+      </table>
+    </div>
+
+    <div class="dbox" style="margin-top:24px">
+      <h3>📊 公开榜单参考（请自行核对最新）</h3>
+      <p>排行榜变动频繁，培训时建议直接打开下列站点，勿背诵具体分数：</p>
+      <ul>
+        <li><a href="https://artificialanalysis.ai/leaderboards/models" target="_blank">Artificial Analysis 模型榜</a></li>
+        <li><a href="https://chat.lmsys.org/?leaderboard" target="_blank">LMSYS Chatbot Arena</a></li>
+        <li><a href="https://www.swebench.com" target="_blank">SWE-bench 官方榜</a></li>
+      </ul>
+      <div class="warn" style="margin-top:12px">⚠️ 勿使用未在厂商官网或上述榜单出现的型号做采购决策。</div>
+    </div>
+
+    <hr class="divider">
+    <span class="sec-anchor" id="us-models"></span>
+    <div class="sec-title">🇺🇸 美国AI公司阵营</div>
+    <div class="grid-3">
+      <div class="card"><div class="card-name">OpenAI</div><div class="card-co"><a href="https://openai.com" target="_blank">openai.com</a></div><div class="card-desc">GPT系列、o1/o3、Sora、DALL-E。全球AI领导者，推动GPT-4o/4.1/5代际迭代以及o系列推理模型。ChatGPT月活5亿+，2025年估值3000亿美元。</div></div>
+      <div class="card"><div class="card-name">Anthropic</div><div class="card-co"><a href="https://anthropic.com" target="_blank">anthropic.com</a></div><div class="card-desc">Claude系列。由前OpenAI员工创立，专注AI安全与对齐。Claude 3.7 Sonnet编码能力全球第一，Claude Code CLI编程工具广受好评。</div></div>
+      <div class="card"><div class="card-name">Google DeepMind</div><div class="card-co"><a href="https://deepmind.google" target="_blank">deepmind.google</a></div><div class="card-desc">Gemini系列、AlphaFold。200万Token上下文是其最大差异化优势。Gemini 2.0 Pro整合Google搜索/Map生态，多模态能力出色。</div></div>
+      <div class="card"><div class="card-name">Meta AI</div><div class="card-co"><a href="https://ai.meta.com" target="_blank">ai.meta.com</a></div><div class="card-desc">LLaMA系列。开源AI最坚定的推动者。Llama 4 Scout/Behemoth重新定义开源上限，全球开发者社区最大，是自托管/私有化部署的首选。</div></div>
+      <div class="card"><div class="card-name">xAI (Elon Musk)</div><div class="card-co"><a href="https://x.ai" target="_blank">x.ai</a></div><div class="card-desc">Grok系列。深度整合X(Twitter)实时数据，可以实时获取社交媒体信息。Grok-3模型实力位居第一梯队，训练集群规模世界最大之一。</div></div>
+      <div class="card"><div class="card-name">Microsoft</div><div class="card-co"><a href="https://azure.microsoft.com/ai" target="_blank">azure.microsoft.com</a></div><div class="card-desc">Phi系列、Copilot生态。微软不追求最大参数，但Phi-4以14B参数达到同级SOTA，适合边缘部署。深度整合Azure+Office+GitHub生态。</div></div>
+      <div class="card"><div class="card-name">Mistral AI</div><div class="card-co"><a href="https://mistral.ai" target="_blank">mistral.ai</a></div><div class="card-desc">Mistral系列。欧洲AI代表，开源+商业混合模式。Mistral Large 2综合实力不俗，在欧洲市场占有率领先，支持多语言。</div></div>
+      <div class="card"><div class="card-name">Cohere</div><div class="card-co"><a href="https://cohere.com" target="_blank">cohere.com</a></div><div class="card-desc">Command R系列、Embedding模型。专注企业RAG场景，检索增强能力行业领先。其Embedding模型被广泛用于知识库搭建。</div></div>
+      <div class="card"><div class="card-name">Amazon</div><div class="card-co"><a href="https://aws.amazon.com/ai" target="_blank">aws.amazon.com</a></div><div class="card-desc">Amazon Nova系列、Bedrock平台。通过Bedrock提供多模型托管，Nova模型性价比突出。亚马逊AI生态深度整合电商/AWS/智能音箱。</div></div>
+      <div class="card"><div class="card-name">Nous Research</div><div class="card-co"><a href="https://nousresearch.com" target="_blank">nousresearch.com</a></div><div class="card-desc">Hermes系列、OpenHermes、Dolphin。开源AI社区明星，以高质量指令微调著称。Hermes 3 405B是开源Agent模型的标杆，Hermes Agent框架GitHub 17K Stars。</div></div>
+      <div class="card"><div class="card-name">AI21 Labs</div><div class="card-co"><a href="https://ai21.com" target="_blank">ai21.com</a></div><div class="card-desc">Jamba系列。以色列AI独角兽，独创SSM-Transformer混合架构（Jamba系列），长上下文处理能力强。商用开源，支持多语言，企业级RAG场景。</div></div>
+      <div class="card"><div class="card-name">Reka AI</div><div class="card-co"><a href="https://reka.ai" target="_blank">reka.ai</a></div><div class="card-desc">Reka Core/Flash/Edge系列。前DeepMind/Google Brain团队创立的AI公司，原生多模态（文/图/音/视/视频理解），边缘到云端全覆盖。</div></div>
+      <div class="card"><div class="card-name">HuggingFace</div><div class="card-co"><a href="https://huggingface.co" target="_blank">huggingface.co</a></div><div class="card-desc">AI开源社区+模型托管平台。StarCoder2/SmolLM2/Zephyr系列。生态核心，是AI开发者必备的平台，模型数超100万。</div></div>
+      <div class="card"><div class="card-name">Stability AI</div><div class="card-co"><a href="https://stability.ai" target="_blank">stability.ai</a></div><div class="card-desc">Stable Diffusion系列+StableLM。AI图像生成领域的开源旗手，SD 3.5是Stable系列最先进的图像模型。公司2024年后经历调整重组。</div></div>
+      <div class="card"><div class="card-name">Writer</div><div class="card-co"><a href="https://writer.com" target="_blank">writer.com</a></div><div class="card-desc">Palmyra X系列。企业级AI写作和文本生成平台，Palmyra模型专为企业内容创作场景优化，强调安全合规。</div></div>
+      <div class="card"><div class="card-name">H2O.ai</div><div class="card-co"><a href="https://h2o.ai" target="_blank">h2o.ai</a></div><div class="card-desc">Danube系列。开源机器学习平台，Danube 3轻量级语言模型适合企业私有化部署。强调可解释AI和AutoML。</div></div>
+    </div>
+
+    <hr class="divider">
+    <span class="sec-anchor" id="cn-models"></span>
+    <div class="sec-title">🇨🇳 中国AI公司阵营</div>
+    <div class="grid-3">
+      <div class="card"><div class="card-name">深度求索 DeepSeek</div><div class="card-co"><a href="https://deepseek.com" target="_blank">deepseek.com</a></div><div class="card-desc">DeepSeek-R1/V3系列。2025年全球最火的中国AI公司。以低成本高性能震撼业界，API价格为GPT-4o的1/30，R1开源后引发美股科技抛售。中文+代码能力极强。</div></div>
+      <div class="card"><div class="card-name">阿里云 通义千问</div><div class="card-co"><a href="https://tongyi.aliyun.com" target="_blank">tongyi.aliyun.com</a></div><div class="card-desc">Qwen系列。中国最活跃的开源模型体系，从0.5B到235B全覆盖。Qwen3-235B综合性能国内第一梯队，尤其Agent能力和代码能力突出。开源生态活跃。</div></div>
+      <div class="card"><div class="card-name">百度 文心</div><div class="card-co"><a href="https://wenxin.baidu.com" target="_blank">wenxin.baidu.com</a></div><div class="card-desc">文心4.5 Turbo。国内最早发布大模型的厂商之一，搜索增强能力突出。深度整合百度搜索/地图/文库生态，C端用户基数庞大。</div></div>
+      <div class="card"><div class="card-name">字节跳动 豆包</div><div class="card-co"><a href="https://volcengine.com/product/doubao" target="_blank">volcengine.com</a></div><div class="card-desc">Doubao Pro系列。以极低价格和大规模C端用户著称，豆包App月活过亿。火山引擎提供API，通过抖音/TikTok场景大规模验证。</div></div>
+      <div class="card"><div class="card-name">智谱AI GLM</div><div class="card-co"><a href="https://zhipuai.cn" target="_blank">zhipuai.cn</a></div><div class="card-desc">GLM-4系列。清华系创业团队，GLM是国内最早的通用大模型之一。Agent工具调用能力突出，企业合作广泛。</div></div>
+      <div class="card"><div class="card-name">月之暗面 Kimi</div><div class="card-co"><a href="https://moonshot.cn" target="_blank">moonshot.cn</a></div><div class="card-desc">Kimi K2.5系列。以超长上下文(200万Token)著称，长文档理解力突出。创始人杨植麟为前清华AI研究员，Kimi成为知识工作者热门工具。</div></div>
+      <div class="card"><div class="card-name">零一万物 Yi</div><div class="card-co"><a href="https://01.ai" target="_blank">01.ai</a></div><div class="card-desc">Yi系列。李开复创立，Yi-Lightning以极速响应和低价著称。开源+商业双线布局，产品矩阵完善。</div></div>
+      <div class="card"><div class="card-name">腾讯 混元</div><div class="card-co"><a href="https://hunyuan.tencent.com" target="_blank">hunyuan.tencent.com</a></div><div class="card-desc">混元Turbo系列。整合腾讯生态（微信/企微/腾讯云），视频多模态能力特色突出。在音视频处理和游戏场景应用广泛。</div></div>
+      <div class="card"><div class="card-name">科大讯飞 星火</div><div class="card-co"><a href="https://xinghuo.xfyun.cn" target="_blank">xinghuo.xfyun.cn</a></div><div class="card-desc">星火Spark 4.5。国内语音AI领导者，语音识别和合成能力突出。在教育和医疗场景有深厚积累，星火大模型获批较早。</div></div>
+      <div class="card"><div class="card-name">百川智能</div><div class="card-co"><a href="https://baichuan-inc.com" target="_blank">baichuan-inc.com</a></div><div class="card-desc">Baichuan系列。搜狗创始人王小川创立，Baichuan-3在中文场景表现不俗。专注医疗AI应用。</div></div>
+      <div class="card"><div class="card-name">华为 盘古</div><div class="card-co"><a href="https://huaweicloud.com/product/pangu" target="_blank">huaweicloud.com</a></div><div class="card-desc">盘古大模型系列。华为自主AI芯片（昇腾）+大模型全栈，气象大模型全球领先。企业级市场（政府/运营商）优势明显。</div></div>
+      <div class="card"><div class="card-name">MiniMax</div><div class="card-co"><a href="https://minimaxi.com" target="_blank">minimaxi.com</a></div><div class="card-desc">Minimax M2.5、海螺AI。音视频多模态和C端产品（海螺AI）表现出色，视频生成质量在国内领先。</div></div>
+      <div class="card"><div class="card-name">上海AI实验室 InternLM</div><div class="card-co"><a href="https://internlm.org" target="_blank">internlm.org</a></div><div class="card-desc">InternLM系列。学术研究导向，书生开源模型体系。8B模型在同参数下表现优异，适合学界和轻量部署。</div></div>
+      <div class="card"><div class="card-name">小米 MiMo</div><div class="card-co"><a href="https://mi.com" target="_blank">mi.com</a></div><div class="card-desc">MiMo-V2.5-Pro。小米2025年正式入局大模型，MiMo系列在综合评测中表现不俗，"手机+AIoT+汽车"三位一体生态整合潜力巨大。</div></div>
+    </div>
+
+    <hr class="divider">
+    <span class="sec-anchor" id="eu-models"></span>
+    <div class="sec-title">🌍 其他地区AI公司</div>
+    <div class="grid-3">
+      <div class="card"><div class="card-name">🇪🇺 Mistral AI (法国)</div><div class="card-co"><a href="https://mistral.ai" target="_blank">mistral.ai</a></div><div class="card-desc">欧洲AI领军者，创始人来自Meta/Google DeepMind。Mistral Large 2和Small系列，多语言能力突出，获法国政府大力支持。</div></div>
+      <div class="card"><div class="card-name">🇰🇷 Upstage (韩国)</div><div class="card-co"><a href="https://upstage.ai" target="_blank">upstage.ai</a></div><div class="card-desc">Solar系列。韩国最大AI独角兽，Pre-MoE架构优化出色。擅长韩语+多语言NLP。</div></div>
+      <div class="card"><div class="card-name">🇫🇮 Silen AI (芬兰)</div><div class="card-co"><a href="https://silen.ai" target="_blank">silen.ai</a></div><div class="card-desc">Poro系列。北欧AI新星，Poro 34B在斯堪的纳维亚语言处理上领先，轻量高效。</div></div>
+      <div class="card"><div class="card-name">🇦🇪 TII (阿联酋)</div><div class="card-co"><a href="https://falconllm.tii.ae" target="_blank">falconllm.tii.ae</a></div><div class="card-desc">Falcon系列。阿联酋技术创新研究所开源Falcon，中东最强AI模型，阿拉伯语优先。</div></div>
+    </div>
+
+    <hr class="divider">
+    <span class="sec-anchor" id="open-models"></span>
+    <div class="sec-title">🔓 开源模型与本地部署</div>
+    <div class="sec-sub">权重可下载、可自托管（License 以各项目为准）。下表汇总本站对比表中的<strong>开源</strong>型号；完整梯队见 <a href="#table-all">完整对比表</a>。</div>
+
+    <div class="dbox" style="margin-top:20px">
+      <h3>常见部署路径</h3>
+      <ul>
+        <li><strong>一键体验：</strong><a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a>（Llama / Qwen / DeepSeek 等）</li>
+        <li><strong>模型下载：</strong><a href="https://huggingface.co" target="_blank" rel="noopener">Hugging Face</a> · <a href="https://modelscope.cn" target="_blank" rel="noopener">魔搭 ModelScope</a></li>
+        <li><strong>生产推理：</strong><a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener">vLLM</a> · llama.cpp · TensorRT-LLM</li>
+      </ul>
+      <div class="tip" style="margin-top:10px">💡 7B～14B 适合单卡消费级 GPU；MoE 大模型需多卡或量化（AWQ / GPTQ）。</div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:20px">
+      <table class="models-compare models-open-table">
+        <thead>
+          <tr><th>模型名称</th><th>公司</th><th>参数</th><th>SWE-bench</th><th>发布时间</th><th>场景 / 特色</th></tr>
+        </thead>
+        <tbody id="open-models-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="sec-sub" style="margin-top:20px;font-weight:600;color:var(--text-strong)">开源生态与社区</div>
+    <div class="grid-3" style="margin-top:12px">
+      <div class="card"><div class="card-name">Meta · Llama</div><div class="card-co"><a href="https://ai.meta.com/llama" target="_blank" rel="noopener">ai.meta.com/llama</a></div><div class="card-desc">Llama 4 Scout、Llama 3.1 等；全球开发者生态最大，Ollama / HF 首发适配多。</div></div>
+      <div class="card"><div class="card-name">深度求索 DeepSeek</div><div class="card-co"><a href="https://www.deepseek.com" target="_blank" rel="noopener">deepseek.com</a></div><div class="card-desc">V4-Pro / Flash、R1、V3 等 MoE 开源；编程与推理性价比极高，国内下载友好。</div></div>
+      <div class="card"><div class="card-name">阿里 · Qwen 开源</div><div class="card-co"><a href="https://qwenlm.github.io" target="_blank" rel="noopener">qwenlm.github.io</a></div><div class="card-desc">Qwen3-235B MoE、Qwen3-7B、Qwen2.5 系列；中文与 Agent 能力强，ModelScope 镜像全。</div></div>
+      <div class="card"><div class="card-name">Mistral AI</div><div class="card-co"><a href="https://mistral.ai" target="_blank" rel="noopener">mistral.ai</a></div><div class="card-desc">Mistral Large 2 等；欧洲开源代表，Apache 2.0 居多，适合多语言与企业私有化。</div></div>
+      <div class="card"><div class="card-name">Microsoft · Phi</div><div class="card-co"><a href="https://azure.microsoft.com/products/phi" target="_blank" rel="noopener">Phi 系列</a></div><div class="card-desc">Phi-4 等小模型；端侧与边缘部署，14B 级在笔记本 GPU 上可跑。</div></div>
+      <div class="card"><div class="card-name">Hugging Face</div><div class="card-co"><a href="https://huggingface.co" target="_blank" rel="noopener">huggingface.co</a></div><div class="card-desc">模型托管与推理 API 社区；StarCoder、SmolLM 等，是找权重与讨论的首选平台。</div></div>
+    </div>
+
+    <hr class="divider">
+    <span class="sec-anchor" id="kb"></span>
+    <div class="sec-title">📋 模型选型指南</div>
+    <div class="dbox cmp-guide">
+      <h3>按使用场景选模型</h3>
+      <div class="cmp-row"><div class="cmp-label">综合对话</div><div>GPT-5.5 · Claude Opus 4.7 / Sonnet 4.6 · Gemini 2.5 Pro · DeepSeek-V4</div></div>
+      <div class="cmp-row"><div class="cmp-label">编程/SWE-bench</div><div>Claude Opus 4.7 · DeepSeek-V4-Pro · Sonnet 4.6 · <a href="coding.html">编码章</a> 详表</div></div>
+      <div class="cmp-row"><div class="cmp-label">中文场景</div><div>Qwen3.6 · DeepSeek-V4/R1 · Kimi K2.6 · GLM-5 · 豆包</div></div>
+      <div class="cmp-row"><div class="cmp-label">数学/推理</div><div>o3/o4 · DeepSeek-R1 / V4（以官方报告为准）</div></div>
+      <div class="cmp-row"><div class="cmp-label">用户体验</div><div>见 <a href="https://chat.lmsys.org" target="_blank">LMSYS Arena</a></div></div>
+      <div class="cmp-row"><div class="cmp-label">低成本 API</div><div>DeepSeek · 豆包 · Qwen-Turbo（见官网单价）</div></div>
+      <div class="cmp-row"><div class="cmp-label">开源/本地</div><div>Qwen3-7B · Llama 4 · DeepSeek-V4-Flash · Phi-4</div></div>
+      <div class="cmp-row"><div class="cmp-label">长文档</div><div>Kimi · Gemini 长上下文 · Claude（以官方上限为准）</div></div>
+      <div class="cmp-row"><div class="cmp-label">企业 RAG</div><div>Command R+ · GPT-5.5 / 4o · Qwen3.6</div></div>
+      <div class="cmp-row"><div class="cmp-label">多模态</div><div>GPT-5.5 / 4o · Gemini 2.5 · 混元/通义 API</div></div>
+    </div>
+  </div>
+  <footer class="site-footer page-cols-footer">
+    <p>AI大模型全景培训手册 · 全部模型 · 2026年5月版</p>
+    <p>数据来源：<a href="https://artificialanalysis.ai" target="_blank">Artificial Analysis</a> · <a href="https://chat.lmsys.org" target="_blank">LMSYS Chatbot Arena</a> · <a href="https://datalearner.com" target="_blank">Datalearner</a> · <a href="https://www.swebench.com" target="_blank">SWE-bench</a> · 各公司官方文档</p>
+  </footer>
+</div>
+<script src="models-table-data.js"></script>
+<script src="models-table.js"></script>
+</body>
+</html>

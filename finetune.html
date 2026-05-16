@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>模型训练·微调·部署 · AI大模型全景</title>
+<script>(function(){var k='ai-training-theme',p='t',t=null;try{var q=new URLSearchParams(location.search);t=q.get(p)||q.get('theme');if(t!=='light'&&t!=='dark')t=sessionStorage.getItem(k);if(t!=='light'&&t!=='dark')t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)'));t=m?decodeURIComponent(m[1]):'';}if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;try{sessionStorage.setItem(k,t);localStorage.setItem(k,t);}catch(e){}}}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+
+<script src="nav.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+<script src="toc.js"></script>
+<script src="site.js"></script>
+
+<script src="copy-blocks.js"></script>
+<script src="data-sourcing.js"></script>
+<script src="backtotop.js"></script>
+</head>
+<body>
+<div class="hero">
+  <h1>⚙️ 模型训练·微调·部署实战</h1>
+  <p>从LoRA微调vLLM部署到Ollama本地运行——开发者必须掌握的AI工程技能</p>
+  <div class="badges"><span class="badge">LoRA微调</span><span class="badge">模型量化</span><span class="badge">vLLM部署</span><span class="badge">Ollama</span><span class="badge">私有化</span></div>
+</div>
+<div class="page-wrap">
+  <div class="dbox"><h3>🎯 核心概念：什么时候需要微调？</h3>
+    <div class="cmp-row"><div class="cmp-label">场景</div><div style="color:var(--green);font-weight:600">RAG（检索增强）</div><div style="color:var(--muted)">微调（Fine-tuning）</div></div>
+    <div class="cmp-row"><div class="cmp-label">成本</div><div>¥0-500/月</div><div>¥5000-数百万</div></div>
+    <div class="cmp-row"><div class="cmp-label">更新速度</div><div>上传文档即时生效</div><div>重新训练数天-数周</div></div>
+    <div class="cmp-row"><div class="cmp-label">什么时候选</div><div>需要引用特定文档、答案需查证来源</div><div>需要固定输出格式、领域术语表述风格迁移</div></div>
+    <div class="tip">💡 <strong>实践经验：</strong>80%的场景RAG就够了，剩下20%才需要微调。先用RAG验证需求，有明确ROI再考虑微调。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🔧 模型微调技术全览</div>
+  <div class="grid-2">
+    <div class="dbox"><h4>🧩 LoRA（低秩适配）</h4>
+      <p>冻结原模型参数，插入可训练的小矩阵（通常仅占原参数0.1-1%）。训练速度和显存需求降低90%以上。</p>
+      <ul>
+        <li><strong>显存需求：</strong>7B模型≈16GB | 13B≈24GB | 70B≈140GB</li>
+        <li><strong>框架：</strong><a href="https://github.com/huggingface/peft" target="_blank">PEFT</a> / <a href="https://github.com/unslothai/unsloth" target="_blank">Unsloth</a></li>
+        <li><strong>适合：</strong>大多数人首选——效果好、成本低、速度快</li>
+      </ul>
+    </div>
+    <div class="dbox"><h4>🧩 QLoRA（量化LoRA）</h4>
+      <p>在LoRA基础上把原模型量化为4-bit，进一步降低显存。7B模型只需10GB显存（一张RTX 3090即可）。</p>
+      <ul>
+        <li><strong>显存需求：</strong>7B≈10GB | 13B≈16GB | 70B≈72GB</li>
+        <li><strong>框架：</strong><a href="https://github.com/huggingface/peft" target="_blank">PEFT + bitsandbytes</a></li>
+        <li><strong>适合：</strong>消费级显卡微调大模型的最佳方案</li>
+      </ul>
+    </div>
+    <div class="dbox"><h4>🎯 全参微调（Full Fine-tuning）</h4>
+      <p>更新模型所有参数，效果最好但成本最高。通常只有企业级场景才做。</p>
+      <ul>
+        <li><strong>框架：</strong><a href="https://github.com/huggingface/transformers" target="_blank">Transformers</a> / <a href="https://github.com/NVIDIA/Megatron-LM" target="_blank">Megatron-LM</a></li>
+        <li><strong>显存需求：</strong>7B≈140GB | 70B≈1.4TB</li>
+        <li><strong>适合：</strong>需要最高质量、有足够算力预算的场景</li>
+      </ul>
+    </div>
+    <div class="dbox"><h4>💡 RLHF/DPO（对齐训练）</h4>
+      <p>让模型的输出更符合人类偏好。ChatGPT/Claude的"好用"主要靠这个。</p>
+      <ul>
+        <li><strong>RLHF：</strong>需训练奖励模型+PPO，训练复杂</li>
+        <li><strong>DPO：</strong>直接优化偏好，简化流程，2024年后成为主流</li>
+        <li><strong>工具：</strong><a href="https://github.com/huggingface/trl" target="_blank">TRL</a> / <a href="https://github.com/argilla-io/distilabel" target="_blank">Distilabel</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">🚀 模型本地部署方案</div>
+  <div class="sec-sub">从Ollama到vLLM——把模型跑在你自己电脑上</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>工具</th><th>定位</th><th>技术栈</th><th>显存要求</th><th>QPS</th><th>推荐场景</th></tr></thead>
+      <tbody>
+        <tr><td><strong><a href="https://ollama.com" target="_blank">Ollama</a></strong></td><td>个人本地运行</td><td>Go+llama.cpp</td><td>4-32GB</td><td>低</td><td>个人学习/实验</td></tr>
+        <tr><td><strong><a href="https://github.com/ggml-ai/llama.cpp" target="_blank">llama.cpp</a></strong></td><td>本地推理核心</td><td>C++</td><td>4-48GB</td><td>中</td><td>CPU/混合推理</td></tr>
+        <tr><td><strong><a href="https://github.com/vllm-project/vllm" target="_blank">vLLM</a></strong></td><td>生产级推理</td><td>Python+CUDA</td><td>24-80GB</td><td>高</td><td>API服务/高并发</td></tr>
+        <tr><td><strong><a href="https://github.com/TensorRT/TensorRT-LLM" target="_blank">TensorRT-LLM</a></strong></td><td>NVIDIA优化</td><td>C+++CUDA</td><td>24-80GB</td><td>最高</td><td>企业生产部署</td></tr>
+        <tr><td><strong><a href="https://github.com/huggingface/text-generation-inference" target="_blank">TGI</a></strong></td><td>HuggingFace推理</td><td>Rust+Python</td><td>24-80GB</td><td>高</td><td>HF生态集成</td></tr>
+        <tr><td><strong><a href="https://github.com/mudler/LocalAI" target="_blank">LocalAI</a></strong></td><td>OpenAI兼容</td><td>Go</td><td>4-32GB</td><td>低-中</td><td>本地替代API</td></tr>
+        <tr><td><strong><a href="https://github.com/openai/openai-cookbook" target="_blank">OpenAI API</a></strong></td><td>云端托管</td><td>—</td><td>—</td><td>极高</td><td>快速上线/无运维</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+  <div class="sec-title">📦 模型量化：降本增效的利器</div>
+  <div class="grid-2">
+    <div class="ci"><div class="ci-name">FP16（半精度）</div><div class="ci-note">原始精度，质量100%。7B模型≈14GB显存。推理质量最高。</div></div>
+    <div class="ci"><div class="ci-name">INT8（8-bit）</div><div class="ci-note">质量损失约1-2%，显存减半。7B≈7GB。性价比最佳。</div></div>
+    <div class="ci"><div class="ci-name">INT4（4-bit）</div><div class="ci-note">质量损失约3-5%，显存仅1/4。7B≈4GB。消费级显卡运行大模型的关键。</div></div>
+    <div class="ci"><div class="ci-name">GGUF格式</div><div class="ci-note">llama.cpp的标准量化格式。CPU可达1-3 tok/s，GPU可达10-30 tok/s。</div></div>
+    <div class="ci"><div class="ci-name">GPTQ格式</div><div class="ci-note">GPU专用量化格式，推理速度优于GGUF。适合GPU部署场景。</div></div>
+    <div class="ci"><div class="ci-name">AWQ格式</div><div class="ci-note">激活感知量化，质量优于GPTQ。2025年后成为GPU量化的新标准。</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox"><h3>⚡ 3分钟部署方案</h3>
+    <h4>🅰️ 个人学习：Ollama（最简单）</h4>
+    <div class="code"># 安装<br>curl -fsSL https://ollama.com/install.sh | sh<br># 下载并运行模型（自动下载Qwen3-7B）<br>ollama run qwen3:7b<br># REST API调用<br>curl http://localhost:11434/api/generate -d '{"model":"qwen3:7b","prompt":"你好"}'</div>
+    <div class="tip">💡 Ollama支持OpenAI兼容API模式：运行后可在Cursor/Continue中配置使用本地模型！</div>
+
+    <h4 style="margin-top:20px">🅱️ 生产级API服务：vLLM（推荐）</h4>
+    <div class="code"># 安装<br>pip install vllm<br># 启动服务（搭载DeepSeek-V3）<br>python -m vllm.entrypoints.openai.api_server --model deepseek-ai/DeepSeek-V3 --port 8000<br># 调用（兼容OpenAI格式）<br>from openai import OpenAI<br>client = OpenAI(base_url="http://localhost:8000/v1", api_key="sk-xxx")</div>
+    <div class="note">vLLM特点：PagedAttention高效显存管理、Continuous Batching提高吞吐量、量化支持AWQ/GPTQ、OpenAI兼容接口。</div>
+  </div>
+
+  <hr class="divider">
+  <div class="dbox"><h3>📌 开发者部署决策树</h3>
+    <div class="cmp-row"><div class="cmp-label">个人电脑跑小模型(7B以下)</div><div>Ollama + GGUF量化（无需GPU，CPU可跑）</div></div>
+    <div class="cmp-row"><div class="cmp-label">企业API推理服务</div><div>vLLM + AWQ量化 + NVIDIA GPU</div></div>
+    <div class="cmp-row"><div class="cmp-label">高吞吐生产系统</div><div>TensorRT-LLM + 多GPU负载均衡</div></div>
+    <div class="cmp-row"><div class="cmp-label">国内私有化部署</div><div>华为昇腾 + CANN + 华为云ModelArts</div></div>
+    <div class="cmp-row"><div class="cmp-label">边缘/端侧AI</div><div>llama.cpp + INT4量化 + 手机/树莓派</div></div>
+    <div class="cmp-row"><div class="cmp-label">不想运维</div><div>直接调用API（OpenAI/DeepSeek/Qwen）最省心</div></div>
+  </div>
+</div>
+<footer><p>AI大模型全景培训手册 · 训练/微调/部署 · 2026年5月版</p><p><a href="manual.html">← 返回培训首页</a> | <a href="rag.html">← 知识库RAG</a> | <a href="industries.html">下一章：行业应用 →</a></p></footer>
+</body>
+</html>
